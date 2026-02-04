@@ -29,7 +29,7 @@ base_param.data.mv_method="msv"
 
 base_param.ClipModel=Param(clip_name="AlphaClip", #  #BboxClip AlphaClip  VanillaClip
                             backbone_name="ViT-L/14",
-                           classifier= "CosimClassfier",
+                           classifier= "UnifiedZipAdapterF",
                             input_shape=BindParam(base_param.data,"input_shape")
                             ,text_list=BindParam(base_param.data,"class_names"))
 

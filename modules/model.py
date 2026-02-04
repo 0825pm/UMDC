@@ -158,6 +158,7 @@ class ClipModel(ModelBase):
                                "EuclideanClassifier",
                                "KNNClassifier",
                                "ClassificationAdapter",
+                               "UnifiedZipAdapterF",
                                ]
         if classifier=="CosimClassfier":
             head=CosimClassfier()
@@ -189,6 +190,9 @@ class ClipModel(ModelBase):
             head=KNNClassifier()
         elif classifier=="ClassificationAdapter":
             head=ClassificationAdapter(text_features)
+        elif classifier=="UnifiedZipAdapterF":
+            from modules.umdc import UnifiedZipAdapterF  # ← 이 줄 추가!
+            head = UnifiedZipAdapterF(text_features)
         else:
             raise Exception(f"unknown head name {classifier}")
 
