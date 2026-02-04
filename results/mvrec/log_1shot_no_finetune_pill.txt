@@ -1,0 +1,53 @@
+/home/user/anaconda3/envs/mvrec/lib/python3.10/site-packages/alpha_clip/alpha_clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  data.fillna('', inplace=True)
+/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  data.fillna('', inplace=True)
+<module 'lyus' from '/home/user/Projects/research/MVREC/lyus/__init__.py'>
+[OrderedDict([('data_option', 'mvtec_pill_data'), ('ClipModel.classifier', 'EchoClassfier'), ('ClipModel.backbone_name', 'ViT-L/14'), ('ClipModel.clip_name', 'AlphaClip'), ('debug.k_shot', 1), ('data.input_shape', 224), ('data.mv_method', 'mso'), ('debug.acti_beta', 32), ('exp_name', 'mvrec_1shot_no_finetune'), ('run_name', 'pill')])]
+param=Param()
+param.min_size=512
+param.input_shape=224
+param.means=[0.485, 0.456, 0.406]
+param.stds=[0.229, 0.224, 0.225]
+param.roi_size_list=[256, 384, 512]
+param.mv_method='mso'
+param.root='/home/user/Projects/Data/MAN_AI/MVTec-FS/image/'
+param.config_name='/home/user/Projects/Data/MAN_AI/MVTec-FS/CONFIG/pill_config1/'
+param.class_names=['color', 'crack', 'faulty_imprint', 'pill_type', 'contamination', 'scratch']
+param.num_classes=6
+param.base_class_names=[]
+param.novel_class_names=[]
+param.data_name='mvtec_pill'
+
+PROJECT_NAME: MVREC
+SAVE_ROOT: /home/user/Projects/research/MVREC/OUTPUT
+Trainable parameters:
+Trainable parameters:
+['weight_name']
+classificationMetric, cls: 6
+Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_pill_support.pt
+Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_pill_query.pt
+0it [00:00, ?it/s]85it [00:00, 644694.10it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 7833.96it/s]
+{5: 1, 0: 1, 4: 1, 1: 1, 2: 1, 3: 1}
+  0%|          | 0/81 [00:00<?, ?it/s] 73%|███████▎  | 59/81 [00:00<00:00, 589.39it/s]100%|██████████| 81/81 [00:00<00:00, 634.23it/s]
+  0%|          | 0/81 [00:00<?, ?it/s] 85%|████████▌ | 69/81 [00:00<00:00, 669.73it/s]100%|██████████| 81/81 [00:00<00:00, 620.37it/s]
+{0: 1, 3: 1, 2: 1, 4: 1, 5: 1, 1: 1}
+  0%|          | 0/81 [00:00<?, ?it/s] 88%|████████▊ | 71/81 [00:00<00:00, 706.83it/s]100%|██████████| 81/81 [00:00<00:00, 640.38it/s]
+  0%|          | 0/81 [00:00<?, ?it/s] 88%|████████▊ | 71/81 [00:00<00:00, 700.84it/s]100%|██████████| 81/81 [00:00<00:00, 675.47it/s]
+{4: 1, 0: 1, 1: 1, 3: 1, 5: 1, 2: 1}
+  0%|          | 0/81 [00:00<?, ?it/s] 94%|█████████▍| 76/81 [00:00<00:00, 751.28it/s]100%|██████████| 81/81 [00:00<00:00, 734.13it/s]
+  0%|          | 0/81 [00:00<?, ?it/s] 85%|████████▌ | 69/81 [00:00<00:00, 687.73it/s]100%|██████████| 81/81 [00:00<00:00, 699.60it/s]
+{4: 1, 1: 1, 0: 1, 2: 1, 3: 1, 5: 1}
+  0%|          | 0/81 [00:00<?, ?it/s] 83%|████████▎ | 67/81 [00:00<00:00, 666.27it/s]100%|██████████| 81/81 [00:00<00:00, 640.36it/s]
+  0%|          | 0/81 [00:00<?, ?it/s] 86%|████████▋ | 70/81 [00:00<00:00, 697.57it/s]100%|██████████| 81/81 [00:00<00:00, 686.89it/s]
+{1: 1, 0: 1, 2: 1, 5: 1, 4: 1, 3: 1}
+  0%|          | 0/81 [00:00<?, ?it/s] 95%|█████████▌| 77/81 [00:00<00:00, 768.03it/s]100%|██████████| 81/81 [00:00<00:00, 730.01it/s]
+  0%|          | 0/81 [00:00<?, ?it/s] 83%|████████▎ | 67/81 [00:00<00:00, 669.83it/s]100%|██████████| 81/81 [00:00<00:00, 644.04it/s]
+[{'mv_acc': 0.5679, 'womv_acc': 0.4074}, {'mv_acc': 0.7654, 'womv_acc': 0.6173}, {'mv_acc': 0.7531, 'womv_acc': 0.5556}, {'mv_acc': 0.6049, 'womv_acc': 0.4444}, {'mv_acc': 0.6296, 'womv_acc': 0.5679}]
+{'mv_acc': {'mean': 0.6642, 'std': 0.0802, 'num': 5, 'values': [0.5679, 0.7654, 0.7531, 0.6049, 0.6296]}, 'womv_acc': {'mean': 0.5185, 'std': 0.0793, 'num': 5, 'values': [0.4074, 0.6173, 0.5556, 0.4444, 0.5679]}}
+['base_param,data_option-mvtec_pill_data,ClipModel.classifier-EchoClassfier,ClipModel.backbone_name-ViT-L/14,ClipModel.clip_name-AlphaClip,debug.k_shot-1,data.input_shape-224,data.mv_method-mso,debug.acti_beta-32,exp_name-mvrec_1shot_no_finetune,run_name-pill', 'pill', 'mvtec_pill', {'mean': 0.6642, 'std': 0.0802, 'num': 5, 'values': [0.5679, 0.7654, 0.7531, 0.6049, 0.6296]}, {'mean': 0.5185, 'std': 0.0793, 'num': 5, 'values': [0.4074, 0.6173, 0.5556, 0.4444, 0.5679]}, {'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 1, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}]
+{'run_name': 'pill', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 1, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_pill': 0.6642, 'average': 0.6642}
+{'run_name': 'pill', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 1, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_pill': 0.5185, 'average': 0.5185, 'mv_infer': 0}

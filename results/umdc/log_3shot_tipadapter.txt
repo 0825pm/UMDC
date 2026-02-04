@@ -1,0 +1,123 @@
+============================================================
+[UMDC] Unified Multi-category Defect Classification
+============================================================
+  K-shot: 3
+  Fine-tuning: True
+    - Epochs: 20
+    - LR: 0.001
+  Categories: 14
+
+[UMDC] Loading unified dataset...
+Loading categories:   0%|          | 0/14 [00:00<?, ?it/s]Loading categories: 100%|██████████| 14/14 [00:00<00:00, 255.63it/s]
+
+[UMDC] Unified Dataset Summary:
+  - Total categories: 14
+  - Total classes: 68
+  - Total samples: 794
+Loading categories:   0%|          | 0/14 [00:00<?, ?it/s]Loading categories: 100%|██████████| 14/14 [00:00<00:00, 278.19it/s]
+
+[UMDC] Unified Dataset Summary:
+  - Total categories: 14
+  - Total classes: 68
+  - Total samples: 720
+  Total classes: 68
+
+[UMDC] Creating model...
+Trainable parameters:
+
+[UMDC] Extracting features...
+[UMDC] Loading cached features from ./buffer/umdc/unified_support.pt
+[UMDC] Loading cached features from ./buffer/umdc/unified_query.pt
+  Support: torch.Size([794, 768])
+  Query: torch.Size([720, 768])
+
+[UMDC] Evaluating...
+
+[UMDC] Sampling 1/5
+  Support: 204 samples, 68 classes
+[UMDC] Support: 204 samples, 68 classes
+  [Fine-tuning] Tip-Adapter-F (epochs=20, lr=0.001)
+[UMDC] Fine-tuning enabled: torch.Size([68, 768])
+    Epoch 5/20: Loss=0.1133, Train=97.2%, Val=91.0%
+    Epoch 10/20: Loss=0.0438, Train=99.8%, Val=88.9%
+    Epoch 15/20: Loss=0.0292, Train=99.8%, Val=90.3%
+    Epoch 20/20: Loss=0.0262, Train=99.8%, Val=90.3%
+    Best Val Acc: 91.67%
+  Accuracy: 0.9569
+
+[UMDC] Sampling 2/5
+  Support: 204 samples, 68 classes
+[UMDC] Support: 204 samples, 68 classes
+  [Fine-tuning] Tip-Adapter-F (epochs=20, lr=0.001)
+[UMDC] Fine-tuning enabled: torch.Size([68, 768])
+    Epoch 5/20: Loss=0.1519, Train=96.0%, Val=88.2%
+    Epoch 10/20: Loss=0.0576, Train=99.7%, Val=92.4%
+    Epoch 15/20: Loss=0.0391, Train=99.7%, Val=93.1%
+    Epoch 20/20: Loss=0.0349, Train=99.8%, Val=93.1%
+    Best Val Acc: 93.06%
+  Accuracy: 0.9819
+
+[UMDC] Sampling 3/5
+  Support: 204 samples, 68 classes
+[UMDC] Support: 204 samples, 68 classes
+  [Fine-tuning] Tip-Adapter-F (epochs=20, lr=0.001)
+[UMDC] Fine-tuning enabled: torch.Size([68, 768])
+    Epoch 5/20: Loss=0.1242, Train=97.2%, Val=87.5%
+    Epoch 10/20: Loss=0.0486, Train=100.0%, Val=89.6%
+    Epoch 15/20: Loss=0.0314, Train=99.8%, Val=88.9%
+    Epoch 20/20: Loss=0.0282, Train=100.0%, Val=88.9%
+    Best Val Acc: 89.58%
+  Accuracy: 0.9764
+
+[UMDC] Sampling 4/5
+  Support: 204 samples, 68 classes
+[UMDC] Support: 204 samples, 68 classes
+  [Fine-tuning] Tip-Adapter-F (epochs=20, lr=0.001)
+[UMDC] Fine-tuning enabled: torch.Size([68, 768])
+    Epoch 5/20: Loss=0.1289, Train=97.7%, Val=90.3%
+    Epoch 10/20: Loss=0.0511, Train=99.7%, Val=89.6%
+    Epoch 15/20: Loss=0.0350, Train=100.0%, Val=91.0%
+    Epoch 20/20: Loss=0.0313, Train=100.0%, Val=89.6%
+    Best Val Acc: 93.75%
+  Accuracy: 0.9375
+
+[UMDC] Sampling 5/5
+  Support: 204 samples, 68 classes
+[UMDC] Support: 204 samples, 68 classes
+  [Fine-tuning] Tip-Adapter-F (epochs=20, lr=0.001)
+[UMDC] Fine-tuning enabled: torch.Size([68, 768])
+    Epoch 5/20: Loss=0.1230, Train=97.7%, Val=87.5%
+    Epoch 10/20: Loss=0.0448, Train=99.8%, Val=89.6%
+    Epoch 15/20: Loss=0.0290, Train=100.0%, Val=90.3%
+    Epoch 20/20: Loss=0.0260, Train=100.0%, Val=90.3%
+    Best Val Acc: 90.28%
+  Accuracy: 0.9792
+
+====================================================================================================
+[UMDC] Results (k_shot=3, finetune=True)
+====================================================================================================
+FS |Method              | carpet|   grid| leathe|   tile|   wood| bottle|  cable| Average
+----------------------------------------------------------------------------------------------------
+ 3 |UMDC+TipAdapterF    |  95.0%|  88.6%|  99.5%| 100.0%|  98.9%|  91.2%|  98.2%|  96.6%
+====================================================================================================
+
+[Statistics]
+  Overall: 96.64% ± 1.69%
+
+  Category-wise:
+    carpet      :  95.0% ± 2.7%
+    grid        :  88.6% ± 6.0%
+    leather     :  99.5% ± 0.9%
+    tile        : 100.0% ± 0.0%
+    wood        :  98.9% ± 1.1%
+    bottle      :  91.2% ± 5.4%
+    cable       :  98.2% ± 1.9%
+    capsule     :  96.6% ± 2.2%
+    hazelnut    :  97.7% ± 2.1%
+    metal_nut   :  99.6% ± 0.8%
+    pill        :  95.3% ± 1.4%
+    screw       :  98.3% ± 1.5%
+    transistor  : 100.0% ± 0.0%
+    zipper      :  95.1% ± 2.7%
+
+[UMDC] Results saved to: /home/user/Projects/research/MVREC/OUTPUT/UMDC/unified_results.json

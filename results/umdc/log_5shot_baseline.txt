@@ -1,0 +1,86 @@
+============================================================
+[UMDC] Unified Multi-category Defect Classification
+============================================================
+  K-shot: 5
+  Fine-tuning: False
+  Categories: 14
+
+[UMDC] Loading unified dataset...
+Loading categories:   0%|          | 0/14 [00:00<?, ?it/s]Loading categories: 100%|██████████| 14/14 [00:00<00:00, 269.90it/s]
+
+[UMDC] Unified Dataset Summary:
+  - Total categories: 14
+  - Total classes: 68
+  - Total samples: 794
+Loading categories:   0%|          | 0/14 [00:00<?, ?it/s]Loading categories: 100%|██████████| 14/14 [00:00<00:00, 296.77it/s]
+
+[UMDC] Unified Dataset Summary:
+  - Total categories: 14
+  - Total classes: 68
+  - Total samples: 720
+  Total classes: 68
+
+[UMDC] Creating model...
+Trainable parameters:
+
+[UMDC] Extracting features...
+[UMDC] Loading cached features from ./buffer/umdc/unified_support.pt
+[UMDC] Loading cached features from ./buffer/umdc/unified_query.pt
+  Support: torch.Size([794, 768])
+  Query: torch.Size([720, 768])
+
+[UMDC] Evaluating...
+
+[UMDC] Sampling 1/5
+  Support: 340 samples, 68 classes
+[UMDC] Support: 340 samples, 68 classes
+  Accuracy: 0.8681
+
+[UMDC] Sampling 2/5
+  Support: 340 samples, 68 classes
+[UMDC] Support: 340 samples, 68 classes
+  Accuracy: 0.8611
+
+[UMDC] Sampling 3/5
+  Support: 340 samples, 68 classes
+[UMDC] Support: 340 samples, 68 classes
+  Accuracy: 0.8458
+
+[UMDC] Sampling 4/5
+  Support: 340 samples, 68 classes
+[UMDC] Support: 340 samples, 68 classes
+  Accuracy: 0.8750
+
+[UMDC] Sampling 5/5
+  Support: 340 samples, 68 classes
+[UMDC] Support: 340 samples, 68 classes
+  Accuracy: 0.8514
+
+====================================================================================================
+[UMDC] Results (k_shot=5, finetune=False)
+====================================================================================================
+FS |Method              | carpet|   grid| leathe|   tile|   wood| bottle|  cable| Average
+----------------------------------------------------------------------------------------------------
+ 5 |UMDC Baseline       |  84.1%|  66.5%|  90.5%|  95.2%|  92.0%|  76.9%|  91.2%|  86.0%
+====================================================================================================
+
+[Statistics]
+  Overall: 86.03% ± 1.06%
+
+  Category-wise:
+    carpet      :  84.1% ± 2.5%
+    grid        :  66.5% ± 6.3%
+    leather     :  90.5% ± 0.9%
+    tile        :  95.2% ± 0.0%
+    wood        :  92.0% ± 7.1%
+    bottle      :  76.9% ± 3.8%
+    cable       :  91.2% ± 2.9%
+    capsule     :  75.5% ± 6.4%
+    hazelnut    :  82.9% ± 1.8%
+    metal_nut   :  89.2% ± 2.7%
+    pill        :  83.2% ± 2.9%
+    screw       :  93.0% ± 1.6%
+    transistor  : 100.0% ± 0.0%
+    zipper      :  86.8% ± 0.9%
+
+[UMDC] Results saved to: /home/user/Projects/research/MVREC/OUTPUT/UMDC/unified_results.json

@@ -1,0 +1,53 @@
+/home/user/anaconda3/envs/mvrec/lib/python3.10/site-packages/alpha_clip/alpha_clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  data.fillna('', inplace=True)
+/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  data.fillna('', inplace=True)
+<module 'lyus' from '/home/user/Projects/research/MVREC/lyus/__init__.py'>
+[OrderedDict([('data_option', 'mvtec_zipper_data'), ('ClipModel.classifier', 'EchoClassfier'), ('ClipModel.backbone_name', 'ViT-L/14'), ('ClipModel.clip_name', 'AlphaClip'), ('debug.k_shot', 3), ('data.input_shape', 224), ('data.mv_method', 'mso'), ('debug.acti_beta', 32), ('exp_name', 'mvrec_3shot_no_finetune'), ('run_name', 'zipper')])]
+param=Param()
+param.min_size=512
+param.input_shape=224
+param.means=[0.485, 0.456, 0.406]
+param.stds=[0.229, 0.224, 0.225]
+param.roi_size_list=[256, 384, 512]
+param.mv_method='mso'
+param.root='/home/user/Projects/Data/MAN_AI/MVTec-FS/image/'
+param.config_name='/home/user/Projects/Data/MAN_AI/MVTec-FS/CONFIG/zipper_config1/'
+param.class_names=['broken_teeth', 'split_teeth', 'rough', 'squeezed_teeth', 'fabric_border', 'fabric_interior']
+param.num_classes=6
+param.base_class_names=[]
+param.novel_class_names=[]
+param.data_name='mvtec_zipper_data'
+
+PROJECT_NAME: MVREC
+SAVE_ROOT: /home/user/Projects/research/MVREC/OUTPUT
+Trainable parameters:
+Trainable parameters:
+['weight_name']
+classificationMetric, cls: 6
+Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_zipper_data_support.pt
+Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_zipper_data_query.pt
+0it [00:00, ?it/s]92it [00:00, 989425.56it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 9035.55it/s]
+{0: 3, 1: 3, 4: 3, 3: 3, 5: 3, 2: 3}
+  0%|          | 0/82 [00:00<?, ?it/s] 78%|███████▊  | 64/82 [00:00<00:00, 625.61it/s]100%|██████████| 82/82 [00:00<00:00, 616.45it/s]
+  0%|          | 0/82 [00:00<?, ?it/s] 89%|████████▉ | 73/82 [00:00<00:00, 729.10it/s]100%|██████████| 82/82 [00:00<00:00, 682.18it/s]
+{2: 3, 0: 3, 5: 3, 4: 3, 1: 3, 3: 3}
+  0%|          | 0/82 [00:00<?, ?it/s] 85%|████████▌ | 70/82 [00:00<00:00, 695.77it/s]100%|██████████| 82/82 [00:00<00:00, 662.03it/s]
+  0%|          | 0/82 [00:00<?, ?it/s] 72%|███████▏  | 59/82 [00:00<00:00, 589.70it/s]100%|██████████| 82/82 [00:00<00:00, 675.42it/s]
+{4: 3, 0: 3, 5: 3, 2: 3, 3: 3, 1: 3}
+  0%|          | 0/82 [00:00<?, ?it/s] 73%|███████▎  | 60/82 [00:00<00:00, 599.23it/s]100%|██████████| 82/82 [00:00<00:00, 664.77it/s]
+  0%|          | 0/82 [00:00<?, ?it/s] 80%|████████  | 66/82 [00:00<00:00, 646.07it/s]100%|██████████| 82/82 [00:00<00:00, 651.74it/s]
+{1: 3, 4: 3, 5: 3, 3: 3, 0: 3, 2: 3}
+  0%|          | 0/82 [00:00<?, ?it/s] 88%|████████▊ | 72/82 [00:00<00:00, 694.02it/s]100%|██████████| 82/82 [00:00<00:00, 641.77it/s]
+  0%|          | 0/82 [00:00<?, ?it/s] 87%|████████▋ | 71/82 [00:00<00:00, 705.03it/s]100%|██████████| 82/82 [00:00<00:00, 676.67it/s]
+{1: 3, 4: 3, 2: 3, 5: 3, 0: 3, 3: 3}
+  0%|          | 0/82 [00:00<?, ?it/s] 85%|████████▌ | 70/82 [00:00<00:00, 694.98it/s]100%|██████████| 82/82 [00:00<00:00, 668.87it/s]
+  0%|          | 0/82 [00:00<?, ?it/s] 76%|███████▌  | 62/82 [00:00<00:00, 618.26it/s]100%|██████████| 82/82 [00:00<00:00, 665.48it/s]
+[{'mv_acc': 0.8537, 'womv_acc': 0.5976}, {'mv_acc': 0.8537, 'womv_acc': 0.6463}, {'mv_acc': 0.8049, 'womv_acc': 0.5854}, {'mv_acc': 0.8415, 'womv_acc': 0.6098}, {'mv_acc': 0.7927, 'womv_acc': 0.5732}]
+{'mv_acc': {'mean': 0.8293, 'std': 0.0256, 'num': 5, 'values': [0.8537, 0.8537, 0.8049, 0.8415, 0.7927]}, 'womv_acc': {'mean': 0.6025, 'std': 0.0251, 'num': 5, 'values': [0.5976, 0.6463, 0.5854, 0.6098, 0.5732]}}
+['base_param,data_option-mvtec_zipper_data,ClipModel.classifier-EchoClassfier,ClipModel.backbone_name-ViT-L/14,ClipModel.clip_name-AlphaClip,debug.k_shot-3,data.input_shape-224,data.mv_method-mso,debug.acti_beta-32,exp_name-mvrec_3shot_no_finetune,run_name-zipper', 'zipper', 'mvtec_zipper_data', {'mean': 0.8293, 'std': 0.0256, 'num': 5, 'values': [0.8537, 0.8537, 0.8049, 0.8415, 0.7927]}, {'mean': 0.6025, 'std': 0.0251, 'num': 5, 'values': [0.5976, 0.6463, 0.5854, 0.6098, 0.5732]}, {'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}]
+{'run_name': 'zipper', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_zipper_data': 0.8293, 'average': 0.8293}
+{'run_name': 'zipper', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_zipper_data': 0.6025, 'average': 0.6025, 'mv_infer': 0}

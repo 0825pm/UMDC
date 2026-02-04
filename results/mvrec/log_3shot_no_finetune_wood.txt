@@ -1,0 +1,53 @@
+/home/user/anaconda3/envs/mvrec/lib/python3.10/site-packages/alpha_clip/alpha_clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  data.fillna('', inplace=True)
+/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  data.fillna('', inplace=True)
+<module 'lyus' from '/home/user/Projects/research/MVREC/lyus/__init__.py'>
+[OrderedDict([('data_option', 'mvtec_wood_data'), ('ClipModel.classifier', 'EchoClassfier'), ('ClipModel.backbone_name', 'ViT-L/14'), ('ClipModel.clip_name', 'AlphaClip'), ('debug.k_shot', 3), ('data.input_shape', 224), ('data.mv_method', 'mso'), ('debug.acti_beta', 32), ('exp_name', 'mvrec_3shot_no_finetune'), ('run_name', 'wood')])]
+param=Param()
+param.min_size=512
+param.input_shape=224
+param.means=[0.485, 0.456, 0.406]
+param.stds=[0.229, 0.224, 0.225]
+param.roi_size_list=[256, 384, 512]
+param.mv_method='mso'
+param.root='/home/user/Projects/Data/MAN_AI/MVTec-FS/image/'
+param.config_name='/home/user/Projects/Data/MAN_AI/MVTec-FS/CONFIG/wood_config1/'
+param.class_names=['color', 'hole', 'liquid', 'scratch']
+param.num_classes=4
+param.base_class_names=[]
+param.novel_class_names=[]
+param.data_name='mvtec_wood_data'
+
+PROJECT_NAME: MVREC
+SAVE_ROOT: /home/user/Projects/research/MVREC/OUTPUT
+Trainable parameters:
+Trainable parameters:
+['weight_name']
+classificationMetric, cls: 4
+Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_wood_data_support.pt
+Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_wood_data_query.pt
+0it [00:00, ?it/s]84it [00:00, 1129235.69it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 15207.77it/s]
+{2: 3, 0: 3, 1: 3, 3: 3}
+  0%|          | 0/70 [00:00<?, ?it/s] 71%|███████▏  | 50/70 [00:00<00:00, 499.45it/s]100%|██████████| 70/70 [00:00<00:00, 580.97it/s]
+  0%|          | 0/70 [00:00<?, ?it/s]100%|██████████| 70/70 [00:00<00:00, 751.75it/s]
+{0: 3, 2: 3, 1: 3, 3: 3}
+  0%|          | 0/70 [00:00<?, ?it/s] 99%|█████████▊| 69/70 [00:00<00:00, 684.03it/s]100%|██████████| 70/70 [00:00<00:00, 679.81it/s]
+  0%|          | 0/70 [00:00<?, ?it/s] 96%|█████████▌| 67/70 [00:00<00:00, 656.31it/s]100%|██████████| 70/70 [00:00<00:00, 653.69it/s]
+{3: 3, 2: 3, 1: 3, 0: 3}
+  0%|          | 0/70 [00:00<?, ?it/s] 93%|█████████▎| 65/70 [00:00<00:00, 628.92it/s]100%|██████████| 70/70 [00:00<00:00, 589.88it/s]
+  0%|          | 0/70 [00:00<?, ?it/s] 97%|█████████▋| 68/70 [00:00<00:00, 675.60it/s]100%|██████████| 70/70 [00:00<00:00, 677.86it/s]
+{1: 3, 3: 3, 0: 3, 2: 3}
+  0%|          | 0/70 [00:00<?, ?it/s]100%|██████████| 70/70 [00:00<00:00, 727.00it/s]
+  0%|          | 0/70 [00:00<?, ?it/s] 90%|█████████ | 63/70 [00:00<00:00, 625.50it/s]100%|██████████| 70/70 [00:00<00:00, 650.54it/s]
+{2: 3, 3: 3, 0: 3, 1: 3}
+  0%|          | 0/70 [00:00<?, ?it/s]100%|██████████| 70/70 [00:00<00:00, 784.65it/s]
+  0%|          | 0/70 [00:00<?, ?it/s]100%|██████████| 70/70 [00:00<00:00, 730.40it/s]
+[{'mv_acc': 0.7714, 'womv_acc': 0.8286}, {'mv_acc': 0.9, 'womv_acc': 0.8}, {'mv_acc': 0.6857, 'womv_acc': 0.7143}, {'mv_acc': 0.8286, 'womv_acc': 0.7857}, {'mv_acc': 0.9, 'womv_acc': 0.8857}]
+{'mv_acc': {'mean': 0.8171, 'std': 0.0815, 'num': 5, 'values': [0.7714, 0.9, 0.6857, 0.8286, 0.9]}, 'womv_acc': {'mean': 0.8029, 'std': 0.056, 'num': 5, 'values': [0.8286, 0.8, 0.7143, 0.7857, 0.8857]}}
+['base_param,data_option-mvtec_wood_data,ClipModel.classifier-EchoClassfier,ClipModel.backbone_name-ViT-L/14,ClipModel.clip_name-AlphaClip,debug.k_shot-3,data.input_shape-224,data.mv_method-mso,debug.acti_beta-32,exp_name-mvrec_3shot_no_finetune,run_name-wood', 'wood', 'mvtec_wood_data', {'mean': 0.8171, 'std': 0.0815, 'num': 5, 'values': [0.7714, 0.9, 0.6857, 0.8286, 0.9]}, {'mean': 0.8029, 'std': 0.056, 'num': 5, 'values': [0.8286, 0.8, 0.7143, 0.7857, 0.8857]}, {'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}]
+{'run_name': 'wood', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_wood_data': 0.8171, 'average': 0.8171}
+{'run_name': 'wood', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_wood_data': 0.8029, 'average': 0.8029, 'mv_infer': 0}
