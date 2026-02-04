@@ -16,18 +16,18 @@ class AlphaClip(nn.Module):
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         assert backbone in  ["ViT-L/14", "ViT-B/16", "ViT-L/14@336px"]
         if backbone=="ViT-L/14":
-            alpha_vision_ckpt_pth="/home/lyushuai/Projects/AlphaCLIP/checkpoints/clip_l14_grit20m_fultune_2xe.pth"
+            alpha_vision_ckpt_pth="/home/user/Projects/research/MVREC/checkpoints/clip_l14_grit20m_fultune_2xe.pth"
             assert os.path.exists(alpha_vision_ckpt_pth)
             self.backbone, self.preprocess = alpha_clip.load(backbone,alpha_vision_ckpt_pth=alpha_vision_ckpt_pth, 
                                                             device=self.device)  # change to your own ckpt path
         if backbone=="ViT-B/16": # 
-            alpha_vision_ckpt_pth="/home/lyushuai/Projects/AlphaCLIP/checkpoints/clip_b16_grit20m_fultune_2xe.pth"
+            alpha_vision_ckpt_pth="/home/user/Projects/research/MVREC/checkpoints/clip_b16_grit20m_fultune_2xe.pth"
             assert os.path.exists(alpha_vision_ckpt_pth)
             self.backbone, self.preprocess = alpha_clip.load(backbone,alpha_vision_ckpt_pth=alpha_vision_ckpt_pth, 
                                                             device=self.device)  # change to your own ckpt path
 
         if backbone=="ViT-L/14@336px":
-            alpha_vision_ckpt_pth="/home/lyushuai/Projects/AlphaCLIP/checkpoints/clip_l14@336_grit_20m_4xe.pth"
+            alpha_vision_ckpt_pth="/home/user/Projects/research/MVREC/checkpoints/clip_l14@336_grit_20m_4xe.pth"
             assert os.path.exists(alpha_vision_ckpt_pth)
             self.backbone, self.preprocess = alpha_clip.load(backbone,alpha_vision_ckpt_pth=alpha_vision_ckpt_pth, 
                                                             device=self.device)  # change to your own ckpt path        

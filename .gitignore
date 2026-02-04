@@ -163,3 +163,7 @@ cython_debug/
 sundries/
 .ipynb_checkpoints/
 __pycache__/
+checkpoints/
+
+OUTPUT/
+save/

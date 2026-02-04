@@ -1,10 +1,6 @@
 
 
 import os,sys
-# p= r"/home/lyushuai/Projects/wise_pro/FabricDataSolution/"
-# assert os.path.exists( os.path.join(p,"FabricDataLib" ))
-# sys.path.append(p)
-
 
 from .clip_preprocess import ClipPreprocess
 from .model import ClipModel

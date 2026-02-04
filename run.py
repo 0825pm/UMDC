@@ -3,9 +3,9 @@ import os.path
 import sys
 sys.path.append("./")
 sys.path.append("../")
-ganrao='/home/lyushuai/Projects/wise_pro/FabricDataSolution'
-if ganrao in sys.path:
-    sys.path.remove('/home/lyushuai/Projects/wise_pro/FabricDataSolution')
+# ganrao='/home/lyushuai/Projects/wise_pro/FabricDataSolution'
+# if ganrao in sys.path:
+#     sys.path.remove('/home/lyushuai/Projects/wise_pro/FabricDataSolution')
 import lyus
 print(lyus)
 

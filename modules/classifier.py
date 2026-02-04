@@ -889,7 +889,7 @@ class EchoClassfierF(EchoClassfier):
         feature_file = f"{name}_features.npy"
         ys_file = f"{name}_labels.npy"
         dirname = os.path.basename(Experiment().get_save_dir())
-        savedir="/home/lyushuai/Projects/MVREC_notebook/save" +f"/{dirname}"
+        savedir="/home/user/Projects/research/MVREC/save" +f"/{dirname}"
         if not os.path.exists(savedir):
             os.makedirs(savedir)
         # Save the numpy arrays to disk

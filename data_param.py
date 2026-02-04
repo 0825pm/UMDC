@@ -5,7 +5,7 @@ def set_data_param(data_option):
 
 
 
-    MVTec_FS_Root="/media/lyushuai/WiseEye/PublicDataset/MVTec_AD/MVTec_FS/"
+    MVTec_FS_Root="/home/user/Projects/Data/MAN_AI/MVTec-FS/"
     ###################################mvtec fs 
     mvtec_carpet_data = Param(root=MVTec_FS_Root+"image/",
                             config_name=MVTec_FS_Root+"CONFIG/"+"carpet_config1/",
