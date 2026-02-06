@@ -274,6 +274,11 @@ def main():
     parser.add_argument("--tau", type=float, default=0.11, help="Temperature")
     parser.add_argument("--scale", type=float, default=32.0, help="Scale factor")
     
+    # Ablation 설정
+    parser.add_argument("--no_zifa", action="store_true", default=False, help="Disable ZiFA adapter (ablation)")
+    parser.add_argument("--no_prototype", action="store_true", default=False, help="Use instance matching instead of prototype (ablation)")
+    parser.add_argument("--exp_tag", type=str, default="", help="Experiment tag for result filename")
+    
     args = parser.parse_args()
     
     print("=" * 60)
@@ -284,6 +289,8 @@ def main():
     if args.finetune:
         print(f"    - Epochs: {args.ft_epochs}")
         print(f"    - LR: {args.ft_lr}")
+    print(f"  ZiFA: {not args.no_zifa}")
+    print(f"  Prototype: {not args.no_prototype}")
     print(f"  Categories: {len(ALL_CATEGORIES)}")
     
     # 파라미터 설정
@@ -321,6 +328,8 @@ def main():
         text_features=text_features_dummy,
         tau=args.tau,
         scale=args.scale,
+        use_zifa=not args.no_zifa,
+        use_prototype=not args.no_prototype,
     ).to(DEVICE)
     
     model.head = new_head
@@ -358,7 +367,8 @@ def main():
     
     # 6. 결과 저장
     import json
-    result_path = os.path.join(SAVE_ROOT, PROJECT_NAME, "unified_results.json")
+    tag = f"_{args.exp_tag}" if args.exp_tag else ""
+    result_path = os.path.join(SAVE_ROOT, PROJECT_NAME, f"unified_results{tag}.json")
     os.makedirs(os.path.dirname(result_path), exist_ok=True)
     
     cat_results_simple = {cat: {"mean": round(d["mean"], 4), "std": round(d["std"], 4)} 
@@ -371,6 +381,9 @@ def main():
             "finetune": args.finetune,
             "ft_epochs": args.ft_epochs if args.finetune else 0,
             "ft_lr": args.ft_lr if args.finetune else 0,
+            "use_zifa": not args.no_zifa,
+            "use_prototype": not args.no_prototype,
+            "exp_tag": args.exp_tag,
             "mean_acc": round(results["mean_acc"], 4),
             "std_acc": round(results["std_acc"], 4),
             "category_results": cat_results_simple,

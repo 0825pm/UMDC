@@ -1,53 +1,0 @@
-/home/user/anaconda3/envs/mvrec/lib/python3.10/site-packages/alpha_clip/alpha_clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
-  from pkg_resources import packaging
-/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  data.fillna('', inplace=True)
-/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  data.fillna('', inplace=True)
-<module 'lyus' from '/home/user/Projects/research/MVREC/lyus/__init__.py'>
-[OrderedDict([('data_option', 'mvtec_grid_data'), ('ClipModel.classifier', 'EchoClassfier'), ('ClipModel.backbone_name', 'ViT-L/14'), ('ClipModel.clip_name', 'AlphaClip'), ('debug.k_shot', 1), ('data.input_shape', 224), ('data.mv_method', 'mso'), ('debug.acti_beta', 32), ('exp_name', 'mvrec_1shot_no_finetune'), ('run_name', 'grid')])]
-param=Param()
-param.min_size=512
-param.input_shape=224
-param.means=[0.485, 0.456, 0.406]
-param.stds=[0.229, 0.224, 0.225]
-param.roi_size_list=[256, 384, 512]
-param.mv_method='mso'
-param.root='/home/user/Projects/Data/MAN_AI/MVTec-FS/image/'
-param.config_name='/home/user/Projects/Data/MAN_AI/MVTec-FS/CONFIG/grid_config1/'
-param.class_names=['bent', 'broken', 'glue', 'metal_contamination', 'thread']
-param.num_classes=5
-param.base_class_names=[]
-param.novel_class_names=[]
-param.data_name='mvtec_grid_data'
-
-PROJECT_NAME: MVREC
-SAVE_ROOT: /home/user/Projects/research/MVREC/OUTPUT
-Trainable parameters:
-Trainable parameters:
-['weight_name']
-classificationMetric, cls: 5
-Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_grid_data_support.pt
-Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_grid_data_query.pt
-0it [00:00, ?it/s]49it [00:00, 703838.68it/s]
-  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 16552.11it/s]
-{2: 1, 4: 1, 3: 1, 1: 1, 0: 1}
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 560.99it/s]
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 599.22it/s]
-{0: 1, 2: 1, 4: 1, 1: 1, 3: 1}
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 662.70it/s]
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 674.86it/s]
-{3: 1, 2: 1, 4: 1, 0: 1, 1: 1}
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 680.08it/s]
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 812.48it/s]
-{4: 1, 2: 1, 3: 1, 1: 1, 0: 1}
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 653.37it/s]
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 573.60it/s]
-{0: 1, 1: 1, 4: 1, 3: 1, 2: 1}
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 715.79it/s]
-  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 758.92it/s]
-[{'mv_acc': 0.4898, 'womv_acc': 0.4286}, {'mv_acc': 0.449, 'womv_acc': 0.4082}, {'mv_acc': 0.6531, 'womv_acc': 0.551}, {'mv_acc': 0.3469, 'womv_acc': 0.3061}, {'mv_acc': 0.6327, 'womv_acc': 0.5918}]
-{'mv_acc': {'mean': 0.5143, 'std': 0.115, 'num': 5, 'values': [0.4898, 0.449, 0.6531, 0.3469, 0.6327]}, 'womv_acc': {'mean': 0.4571, 'std': 0.1029, 'num': 5, 'values': [0.4286, 0.4082, 0.551, 0.3061, 0.5918]}}
-['base_param,data_option-mvtec_grid_data,ClipModel.classifier-EchoClassfier,ClipModel.backbone_name-ViT-L/14,ClipModel.clip_name-AlphaClip,debug.k_shot-1,data.input_shape-224,data.mv_method-mso,debug.acti_beta-32,exp_name-mvrec_1shot_no_finetune,run_name-grid', 'grid', 'mvtec_grid_data', {'mean': 0.5143, 'std': 0.115, 'num': 5, 'values': [0.4898, 0.449, 0.6531, 0.3469, 0.6327]}, {'mean': 0.4571, 'std': 0.1029, 'num': 5, 'values': [0.4286, 0.4082, 0.551, 0.3061, 0.5918]}, {'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 1, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}]
-{'run_name': 'grid', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 1, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_grid_data': 0.5143, 'average': 0.5143}
-{'run_name': 'grid', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 1, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_grid_data': 0.4571, 'average': 0.4571, 'mv_infer': 0}

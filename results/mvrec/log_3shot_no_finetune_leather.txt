@@ -1,53 +1,0 @@
-/home/user/anaconda3/envs/mvrec/lib/python3.10/site-packages/alpha_clip/alpha_clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
-  from pkg_resources import packaging
-/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  data.fillna('', inplace=True)
-/home/user/Projects/research/MVREC/modules/utils.py:407: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  data.fillna('', inplace=True)
-<module 'lyus' from '/home/user/Projects/research/MVREC/lyus/__init__.py'>
-[OrderedDict([('data_option', 'mvtec_leather_data'), ('ClipModel.classifier', 'EchoClassfier'), ('ClipModel.backbone_name', 'ViT-L/14'), ('ClipModel.clip_name', 'AlphaClip'), ('debug.k_shot', 3), ('data.input_shape', 224), ('data.mv_method', 'mso'), ('debug.acti_beta', 32), ('exp_name', 'mvrec_3shot_no_finetune'), ('run_name', 'leather')])]
-param=Param()
-param.min_size=512
-param.input_shape=224
-param.means=[0.485, 0.456, 0.406]
-param.stds=[0.229, 0.224, 0.225]
-param.roi_size_list=[256, 384, 512]
-param.mv_method='mso'
-param.root='/home/user/Projects/Data/MAN_AI/MVTec-FS/image/'
-param.config_name='/home/user/Projects/Data/MAN_AI/MVTec-FS/CONFIG/leather_config1/'
-param.class_names=['color', 'cut', 'fold', 'glue', 'poke']
-param.num_classes=5
-param.base_class_names=[]
-param.novel_class_names=[]
-param.data_name='mvtec_leather'
-
-PROJECT_NAME: MVREC
-SAVE_ROOT: /home/user/Projects/research/MVREC/OUTPUT
-Trainable parameters:
-Trainable parameters:
-['weight_name']
-classificationMetric, cls: 5
-Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_leather_support.pt
-Loading existing samples from ./buffer/mso/AlphaClip_ViT-L/14_mvtec_leather_query.pt
-0it [00:00, ?it/s]51it [00:00, 842163.40it/s]
-  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 17036.17it/s]
-{1: 3, 4: 3, 2: 3, 0: 3, 3: 3}
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 590.51it/s]
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 568.67it/s]
-{2: 3, 4: 3, 1: 3, 0: 3, 3: 3}
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 716.29it/s]
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 726.01it/s]
-{2: 3, 3: 3, 0: 3, 4: 3, 1: 3}
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 678.98it/s]
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 741.21it/s]
-{4: 3, 0: 3, 2: 3, 3: 3, 1: 3}
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 626.67it/s]
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 616.70it/s]
-{1: 3, 4: 3, 2: 3, 0: 3, 3: 3}
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 749.27it/s]
-  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 44/44 [00:00<00:00, 712.04it/s]
-[{'mv_acc': 0.8636, 'womv_acc': 0.7273}, {'mv_acc': 0.9091, 'womv_acc': 0.7727}, {'mv_acc': 0.8409, 'womv_acc': 0.7045}, {'mv_acc': 0.8864, 'womv_acc': 0.75}, {'mv_acc': 0.7955, 'womv_acc': 0.7045}]
-{'mv_acc': {'mean': 0.8591, 'std': 0.0391, 'num': 5, 'values': [0.8636, 0.9091, 0.8409, 0.8864, 0.7955]}, 'womv_acc': {'mean': 0.7318, 'std': 0.0265, 'num': 5, 'values': [0.7273, 0.7727, 0.7045, 0.75, 0.7045]}}
-['base_param,data_option-mvtec_leather_data,ClipModel.classifier-EchoClassfier,ClipModel.backbone_name-ViT-L/14,ClipModel.clip_name-AlphaClip,debug.k_shot-3,data.input_shape-224,data.mv_method-mso,debug.acti_beta-32,exp_name-mvrec_3shot_no_finetune,run_name-leather', 'leather', 'mvtec_leather', {'mean': 0.8591, 'std': 0.0391, 'num': 5, 'values': [0.8636, 0.9091, 0.8409, 0.8864, 0.7955]}, {'mean': 0.7318, 'std': 0.0265, 'num': 5, 'values': [0.7273, 0.7727, 0.7045, 0.75, 0.7045]}, {'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}]
-{'run_name': 'leather', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_leather': 0.8591, 'average': 0.8591}
-{'run_name': 'leather', 'hyper_param': "{'k_patch': 2, 'sdpa_scale': 300, 'ft_epo': 500, 'train_sk': False, 'acti_beta': 32, 'fvns': 1, 'fvnq': 1, 'trip_loss_weight': 4, 'trip_loss_margin': 0.5, 'mulit_view': 1, 'k_shot': 3, 'num_sampling': 5, 'infer_style': 'assemble_uncertainty', 'zip_config_index': 6, 'text_logits_wight': 0, 'uncertainty_alpha': 2}", 'mvtec_leather': 0.7318, 'average': 0.7318, 'mv_infer': 0}

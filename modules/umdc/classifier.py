@@ -49,6 +49,8 @@ class UnifiedZipAdapterF(nn.Module):
         embed_dim: int = 768,
         tau: float = 0.11,
         scale: float = 32.0,
+        use_zifa: bool = True,
+        use_prototype: bool = True,
         **kwargs  # MVREC 호환용 - 무시되는 인자들
     ):
         super().__init__()
@@ -62,6 +64,10 @@ class UnifiedZipAdapterF(nn.Module):
         # Hyperparameters
         self.tau = tau
         self.scale = scale
+        
+        # Ablation flags
+        self.use_zifa = use_zifa
+        self.use_prototype = use_prototype
         
         # Zero-init Adapter (경량 projection)
         self.zifa = self._build_adapter(self.embed_dim)
@@ -89,6 +95,12 @@ class UnifiedZipAdapterF(nn.Module):
                 nn.init.zeros_(m.weight)
                 nn.init.zeros_(m.bias)
         return adapter
+    
+    def _apply_adapter(self, x: torch.Tensor) -> torch.Tensor:
+        """ZiFA 적용 (ablation: use_zifa=False면 identity)"""
+        if self.use_zifa:
+            return self.zifa(x) + x
+        return x
     
     # ========================================================================
     # MVREC 호환 인터페이스
@@ -146,18 +158,26 @@ class UnifiedZipAdapterF(nn.Module):
             "[UMDC] Support not set! Call init_weight() or set_support() first."
         
         # Adapter (residual)
-        embeddings = self.zifa(x) + x
-        support_key = self.zifa(self.support_features) + self.support_features
+        embeddings = self._apply_adapter(x)
+        support_key = self._apply_adapter(self.support_features)
         
         # Normalize
         embeddings = F.normalize(embeddings, p=2, dim=-1)
         support_key = F.normalize(support_key, p=2, dim=-1)
         
-        # Compute prototypes (class mean)
-        prototypes = self._compute_prototypes(support_key, self.support_labels)
-        
-        # Cosine similarity
-        cos_sim = torch.matmul(embeddings, prototypes.t())
+        if self.use_prototype:
+            # Compute prototypes (class mean)
+            prototypes = self._compute_prototypes(support_key, self.support_labels)
+            cos_sim = torch.matmul(embeddings, prototypes.t())
+        else:
+            # Instance matching: query vs all support, then aggregate per class
+            all_sim = torch.matmul(embeddings, support_key.t())  # (B, N_support)
+            cos_sim = torch.zeros(embeddings.size(0), self.num_classes, 
+                                  device=embeddings.device, dtype=embeddings.dtype)
+            for c in range(self.num_classes):
+                mask = (self.support_labels == c)
+                if mask.sum() > 0:
+                    cos_sim[:, c] = all_sim[:, mask].mean(dim=-1)
         
         # MVREC activation: exp(-alpha * (1 - cos_sim))
         alpha = self.scale
@@ -217,7 +237,7 @@ class UnifiedZipAdapterF(nn.Module):
         
         # Support에 adapter 적용
         with torch.no_grad():
-            support_transformed = self.zifa(support_feat) + support_feat
+            support_transformed = self._apply_adapter(support_feat)
         
         # Prototype 계산
         prototypes = []
@@ -262,6 +282,9 @@ class UnifiedZipAdapterF(nn.Module):
             history: {"train_loss", "train_acc", "val_acc"}
         """
         # 1. Fine-tuning 모드 활성화
+        if not self.use_prototype:
+            print("[UMDC] Warning: Fine-tuning skipped (instance matching mode)")
+            return {'train_loss': [], 'train_acc': [], 'val_acc': []}
         if not self._finetuning_enabled:
             self.enable_prototype_finetuning()
         
@@ -273,7 +296,7 @@ class UnifiedZipAdapterF(nn.Module):
         query_feat = query_features.to(dtype=dtype)
         
         with torch.no_grad():
-            query_transformed = self.zifa(query_feat) + query_feat
+            query_transformed = self._apply_adapter(query_feat)
             query_transformed = query_transformed.float()
         
         # 3. Train/Val Split
@@ -361,7 +384,7 @@ class UnifiedZipAdapterF(nn.Module):
         x_typed = x.to(dtype=dtype)
         
         # Adapter
-        embeddings = self.zifa(x_typed) + x_typed
+        embeddings = self._apply_adapter(x_typed)
         embeddings = F.normalize(embeddings.float(), p=2, dim=-1)
         
         # Fine-tuned prototypes
