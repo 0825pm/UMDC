@@ -1,47 +1,23 @@
 # UMDC: Unified Multi-category Defect Classification
 # modules/umdc/classifier.py
 #
-# 핵심 구성요소:
-# 1. UnifiedZipAdapterF: Category-Agnostic Few-shot Classifier
-# 2. Tip-Adapter-F Style Fine-tuning: Query 기반 prototype 최적화
-#
-# 최고 성능: 97.17% ± 0.89% (5-shot, MVTec-FS)
+# v5: Multiple classifier modes
+#   - "mvrec": exp(-α + α·cos_sim) / τ  (original)
+#   - "cosine": scale · cos_sim + learnable_bias  (per-class bias)
+#   - "linear": W·x + b  (full linear probe, no cosine constraint)
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from typing import Dict, Optional
-from tqdm import tqdm
+
 
 from .loss import UMDCLoss, EpisodicLoss
 from .sampler import EpisodicSampler
 
 
 class UnifiedZipAdapterF(nn.Module):
-    """
-    UMDC: Unified Few-shot Defect Classifier
-    
-    Key Features:
-    1. Category-Agnostic: 카테고리 정보 없이 통합 분류
-    2. Prototype-based: Class prototype으로 few-shot classification
-    3. Tip-Adapter-F Fine-tuning: Query로 prototype 최적화
-    
-    MVREC 호환 인터페이스:
-    - init_weight(cache_keys, cache_vals) ← set_img_prototype에서 호출
-    - forward(x) → {"predicts", "logits", "embeddings"}
-    
-    Usage:
-        # 1. Support 설정
-        classifier.init_weight(support_features, support_onehot)
-        
-        # 2. Fine-tuning (optional but recommended)
-        classifier.finetune_prototypes(query_features, query_labels, epochs=20)
-        
-        # 3. Inference
-        output = classifier.forward_with_finetuned_prototypes(query_features)
-        predictions = output["predicts"].argmax(dim=-1)
-    """
     
     def __init__(
         self, 
@@ -51,45 +27,36 @@ class UnifiedZipAdapterF(nn.Module):
         scale: float = 32.0,
         use_zifa: bool = True,
         use_prototype: bool = True,
-        **kwargs  # MVREC 호환용 - 무시되는 인자들
+        classifier_mode: str = "mvrec",  # ✅ NEW: "mvrec", "cosine", "linear"
+        **kwargs
     ):
         super().__init__()
         
-        # Embedding dimension
         if text_features is not None:
             self.embed_dim = text_features.shape[-1]
         else:
             self.embed_dim = embed_dim
         
-        # Hyperparameters
         self.tau = tau
         self.scale = scale
-        
-        # Ablation flags
         self.use_zifa = use_zifa
         self.use_prototype = use_prototype
+        self.classifier_mode = classifier_mode
         
-        # Zero-init Adapter (경량 projection)
         self.zifa = self._build_adapter(self.embed_dim)
         
-        # Support Bank (동적)
         self.register_buffer("support_features", None)
         self.register_buffer("support_labels", None)
         self.num_classes = 0
         
-        # Fine-tuning state
         self._finetuning_enabled = False
-        
-        # Loss function
         self._loss_fn = UMDCLoss()
     
     def _build_adapter(self, dim: int) -> nn.Sequential:
-        """Zero-init Projection Adapter"""
         adapter = nn.Sequential(
             nn.Linear(dim, dim, bias=True),
             nn.SiLU(inplace=True),
         )
-        # Zero initialization for residual-friendly start
         for m in adapter:
             if isinstance(m, nn.Linear):
                 nn.init.zeros_(m.weight)
@@ -97,10 +64,48 @@ class UnifiedZipAdapterF(nn.Module):
         return adapter
     
     def _apply_adapter(self, x: torch.Tensor) -> torch.Tensor:
-        """ZiFA 적용 (ablation: use_zifa=False면 identity)"""
         if self.use_zifa:
             return self.zifa(x) + x
         return x
+    
+    # ========================================================================
+    # Logit computation per mode
+    # ========================================================================
+    
+    def _compute_logits(self, embeddings: torch.Tensor, prototypes: torch.Tensor,
+                        bias: torch.Tensor = None) -> torch.Tensor:
+        """
+        Compute logits based on classifier_mode.
+        
+        Args:
+            embeddings: (B, D) L2-normalized query features
+            prototypes: (C, D) L2-normalized prototypes (or linear weights)
+            bias: (C,) optional per-class bias
+        """
+        if self.classifier_mode == "mvrec":
+            # Original: exp(-α + α·cos_sim) / τ
+            cos_sim = torch.matmul(embeddings, prototypes.t())
+            alpha = self.scale
+            logits = ((-1) * (alpha - alpha * cos_sim)).exp()
+            logits = logits / max(self.tau, 1e-9)
+        
+        elif self.classifier_mode == "cosine":
+            # scale · cos_sim + bias
+            cos_sim = torch.matmul(embeddings, prototypes.t())
+            logits = self.scale * cos_sim
+            if bias is not None:
+                logits = logits + bias
+        
+        elif self.classifier_mode == "linear":
+            # W·x + b (prototypes = W, not necessarily normalized)
+            logits = torch.matmul(embeddings, prototypes.t())
+            if bias is not None:
+                logits = logits + bias
+        
+        else:
+            raise ValueError(f"Unknown classifier_mode: {self.classifier_mode}")
+        
+        return logits
     
     # ========================================================================
     # MVREC 호환 인터페이스
@@ -108,95 +113,51 @@ class UnifiedZipAdapterF(nn.Module):
     
     def init_weight(self, cache_keys: torch.Tensor, cache_vals: torch.Tensor,
                     finetune: bool = False, total_steps: int = 0):
-        """
-        MVREC 호환: Support set 초기화
-        
-        Args:
-            cache_keys: (N*K, V, L, C) or (N*K, V, C) or (N*K, C)
-            cache_vals: (N*K, num_classes) - one-hot labels
-        """
-        # Shape 처리
         if cache_keys.dim() == 4:
             B, V, L, C = cache_keys.shape
             cache_keys = cache_keys.view(B, V * L, C).mean(dim=1)
         elif cache_keys.dim() == 3:
             cache_keys = cache_keys.mean(dim=1)
-        
-        # One-hot → label index
         labels = cache_vals.argmax(dim=-1)
-        
-        # Support 설정
         self.set_support(cache_keys, labels)
-        
-        # Fine-tuning 상태 초기화
         self._finetuning_enabled = False
         if hasattr(self, '_ft_prototypes'):
             delattr(self, '_ft_prototypes')
+        if hasattr(self, '_ft_bias'):
+            delattr(self, '_ft_bias')
     
     def set_support(self, features: torch.Tensor, labels: torch.Tensor):
-        """Support set 설정"""
         if features.dim() == 3:
             features = features.mean(dim=1)
-        
         self.support_features = features.detach()
         self.support_labels = labels.detach().long()
         self.num_classes = int(labels.max().item()) + 1
-        
         print(f"[UMDC] Support: {features.shape[0]} samples, {self.num_classes} classes")
     
     def forward(self, x: torch.Tensor) -> Dict[str, torch.Tensor]:
-        """
-        Standard forward (without fine-tuning)
+        assert self.support_features is not None, "[UMDC] Support not set!"
         
-        Args:
-            x: (batch, embed_dim)
-        
-        Returns:
-            {"predicts", "logits", "embeddings"}
-        """
-        assert self.support_features is not None, \
-            "[UMDC] Support not set! Call init_weight() or set_support() first."
-        
-        # Adapter (residual)
         embeddings = self._apply_adapter(x)
         support_key = self._apply_adapter(self.support_features)
         
-        # Normalize
         embeddings = F.normalize(embeddings, p=2, dim=-1)
         support_key = F.normalize(support_key, p=2, dim=-1)
         
         if self.use_prototype:
-            # Compute prototypes (class mean)
             prototypes = self._compute_prototypes(support_key, self.support_labels)
-            cos_sim = torch.matmul(embeddings, prototypes.t())
+            logits = self._compute_logits(embeddings, prototypes)
         else:
-            # Instance matching: query vs all support, then aggregate per class
-            all_sim = torch.matmul(embeddings, support_key.t())  # (B, N_support)
-            cos_sim = torch.zeros(embeddings.size(0), self.num_classes, 
-                                  device=embeddings.device, dtype=embeddings.dtype)
-            for c in range(self.num_classes):
-                mask = (self.support_labels == c)
-                if mask.sum() > 0:
-                    cos_sim[:, c] = all_sim[:, mask].mean(dim=-1)
+            # MVREC-style instance matching:
+            # raw_logits (B, K*N) → aggregate to (B, N) via one_hot
+            raw_logits = self._compute_logits(embeddings, support_key)
+            one_hot = F.one_hot(self.support_labels, self.num_classes).float()
+            logits = raw_logits @ one_hot
         
-        # MVREC activation: exp(-alpha * (1 - cos_sim))
-        alpha = self.scale
-        logits = ((-1) * (alpha - alpha * cos_sim)).exp()
+        predicts = logits.softmax(dim=-1)
         
-        # Temperature scaling
-        tau = max(self.tau, 1e-9)
-        logits_scaled = logits / tau
-        
-        predicts = logits_scaled.softmax(dim=-1)
-        
-        return {
-            "predicts": predicts,
-            "logits": logits_scaled,
-            "embeddings": embeddings
-        }
+        return {"predicts": predicts, "logits": logits, "embeddings": embeddings}
     
     def _compute_prototypes(self, features: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
-        """Compute class prototypes (mean)"""
         prototypes = []
         for c in range(self.num_classes):
             mask = (labels == c)
@@ -208,38 +169,26 @@ class UnifiedZipAdapterF(nn.Module):
         return torch.stack(prototypes, dim=0)
     
     def get_loss(self) -> nn.Module:
-        """MVREC 호환: loss 함수 반환"""
         return self._loss_fn
     
     # ========================================================================
-    # Tip-Adapter-F Style Fine-tuning (핵심!)
+    # Fine-tuning with multiple classifier modes
     # ========================================================================
     
     def enable_prototype_finetuning(self):
-        """
-        Prototype을 learnable parameter로 변환
-        
-        Tip-Adapter-F 핵심 아이디어:
-        - Support로 초기화된 prototype을 query로 fine-tuning
-        - 10~20 epochs만으로 큰 성능 향상
-        """
         if self.support_features is None:
             raise ValueError("[UMDC] Support not set!")
         
-        # Eval mode (dropout/noise 방지)
         was_training = self.training
         self.eval()
         
-        # Dtype 일치 (mixed precision 대응)
         device = self.support_features.device
         dtype = next(self.zifa.parameters()).dtype
         support_feat = self.support_features.to(dtype=dtype)
         
-        # Support에 adapter 적용
         with torch.no_grad():
             support_transformed = self._apply_adapter(support_feat)
         
-        # Prototype 계산
         prototypes = []
         for c in range(self.num_classes):
             mask = (self.support_labels == c)
@@ -249,187 +198,180 @@ class UnifiedZipAdapterF(nn.Module):
                 proto = torch.zeros(self.embed_dim, device=device, dtype=dtype)
             prototypes.append(proto)
         
-        # Learnable parameter로 등록 (float32 - 학습 안정성)
-        self._ft_prototypes = nn.Parameter(torch.stack(prototypes, dim=0).float())
-        self._finetuning_enabled = True
+        proto_tensor = torch.stack(prototypes, dim=0).float()
         
+        # ✅ Mode-specific initialization
+        if self.classifier_mode == "linear":
+            # Linear probe: W init from prototypes (scaled), no normalization constraint
+            self._ft_prototypes = nn.Parameter(proto_tensor * self.scale)
+        else:
+            # mvrec / cosine: normalized prototypes
+            self._ft_prototypes = nn.Parameter(proto_tensor)
+        
+        # ✅ Per-class bias (cosine, linear only)
+        if self.classifier_mode in ("cosine", "linear"):
+            self._ft_bias = nn.Parameter(torch.zeros(self.num_classes, device=device))
+        
+        self._finetuning_enabled = True
         if was_training:
             self.train()
         
-        print(f"[UMDC] Fine-tuning enabled: {self._ft_prototypes.shape}")
+        mode_info = f"mode={self.classifier_mode}"
+        bias_info = f", +bias" if self.classifier_mode in ("cosine", "linear") else ""
+        print(f"[UMDC] Fine-tuning enabled: {self._ft_prototypes.shape} ({mode_info}{bias_info})")
     
     def finetune_prototypes(
         self,
-        query_features: torch.Tensor,
-        query_labels: torch.Tensor,
+        train_features: torch.Tensor,
+        train_labels: torch.Tensor,
         epochs: int = 20,
         lr: float = 0.001,
         weight_decay: float = 0.01,
-        val_split: float = 0.2,
+        val_split: float = 0.0,
         verbose: bool = True,
+        transductive: bool = False,
+        query_features: torch.Tensor = None,
+        entropy_weight: float = 0.1,
     ) -> Dict:
         """
-        Tip-Adapter-F: Query로 prototype fine-tuning
-        
-        Args:
-            query_features: (N, D) query features
-            query_labels: (N,) query labels
-            epochs: Fine-tuning epochs (default: 20)
-            lr: Learning rate (default: 0.001)
-            val_split: Validation split ratio (default: 0.2)
-        
-        Returns:
-            history: {"train_loss", "train_acc", "val_acc"}
+        Fine-tuning with support-only + optional transductive.
+        Classifier mode determines how logits are computed.
         """
-        # 1. Fine-tuning 모드 활성화
         if not self.use_prototype:
-            print("[UMDC] Warning: Fine-tuning skipped (instance matching mode)")
             return {'train_loss': [], 'train_acc': [], 'val_acc': []}
         if not self._finetuning_enabled:
             self.enable_prototype_finetuning()
         
-        device = query_features.device
+        device = train_features.device
+        do_trans = transductive and query_features is not None
         
-        # 2. Query에 adapter 적용
         self.eval()
         dtype = next(self.zifa.parameters()).dtype
-        query_feat = query_features.to(dtype=dtype)
         
         with torch.no_grad():
-            query_transformed = self._apply_adapter(query_feat)
-            query_transformed = query_transformed.float()
+            s_feat = self._apply_adapter(train_features.to(dtype=dtype)).float()
+            if do_trans:
+                q_feat = self._apply_adapter(query_features.to(dtype=dtype)).float()
+                if verbose:
+                    print(f"    [Transductive] query={q_feat.shape[0]}, λ={entropy_weight}")
         
-        # 3. Train/Val Split
-        num_samples = query_transformed.shape[0]
-        indices = torch.randperm(num_samples, device=device)
-        split = int((1 - val_split) * num_samples)
-        
-        train_idx, val_idx = indices[:split], indices[split:]
-        train_feat, train_lab = query_transformed[train_idx], query_labels[train_idx]
-        val_feat, val_lab = query_transformed[val_idx], query_labels[val_idx]
-        
-        # 4. Optimizer (prototype만 학습)
-        optimizer = optim.AdamW([self._ft_prototypes], lr=lr, weight_decay=weight_decay)
-        scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs, eta_min=lr*0.01)
-        
-        history = {'train_loss': [], 'train_acc': [], 'val_acc': []}
-        best_val_acc = 0.0
-        best_prototypes = None
-        
-        # Freeze all except prototypes
+        # Learnable params
         for param in self.parameters():
             param.requires_grad = False
         self._ft_prototypes.requires_grad = True
         
-        # 5. Training loop
+        params_to_train = [{'params': [self._ft_prototypes], 'lr': lr}]
+        
+        if hasattr(self, '_ft_bias'):
+            self._ft_bias.requires_grad = True
+            params_to_train.append({'params': [self._ft_bias], 'lr': lr})
+        
+        optimizer = optim.AdamW(params_to_train, weight_decay=weight_decay)
+        scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs, eta_min=lr * 0.01)
+        
+        history = {'train_loss': [], 'train_acc': [], 'val_acc': []}
+        
         for epoch in range(epochs):
             optimizer.zero_grad()
             
-            # Forward
-            prototypes = F.normalize(self._ft_prototypes, p=2, dim=-1)
-            train_feat_norm = F.normalize(train_feat, p=2, dim=-1)
+            # ✅ Mode-aware logit computation
+            bias = self._ft_bias if hasattr(self, '_ft_bias') else None
             
-            cos_sim = torch.matmul(train_feat_norm, prototypes.t())
-            logits = self.scale * cos_sim / max(self.tau, 1e-9)
+            if self.classifier_mode == "linear":
+                # Linear: no normalization on weights
+                s_norm = F.normalize(s_feat, p=2, dim=-1)
+                s_logits = self._compute_logits(s_norm, self._ft_prototypes, bias)
+            else:
+                # mvrec / cosine: normalize both
+                prototypes = F.normalize(self._ft_prototypes, p=2, dim=-1)
+                s_norm = F.normalize(s_feat, p=2, dim=-1)
+                s_logits = self._compute_logits(s_norm, prototypes, bias)
             
-            loss = F.cross_entropy(logits, train_lab)
+            support_loss = F.cross_entropy(s_logits, train_labels)
             
-            # Backward
+            # Transductive entropy
+            if do_trans:
+                if self.classifier_mode == "linear":
+                    q_norm = F.normalize(q_feat, p=2, dim=-1)
+                    q_logits = self._compute_logits(q_norm, self._ft_prototypes, bias)
+                else:
+                    q_norm = F.normalize(q_feat, p=2, dim=-1)
+                    q_logits = self._compute_logits(q_norm, prototypes, bias)
+                
+                q_probs = F.softmax(q_logits, dim=-1)
+                entropy = -(q_probs * (q_probs + 1e-8).log()).sum(dim=-1).mean()
+                loss = support_loss + entropy_weight * entropy
+            else:
+                entropy = torch.tensor(0.0)
+                loss = support_loss
+            
             loss.backward()
             torch.nn.utils.clip_grad_norm_([self._ft_prototypes], max_norm=1.0)
+            if hasattr(self, '_ft_bias'):
+                torch.nn.utils.clip_grad_norm_([self._ft_bias], max_norm=1.0)
             optimizer.step()
             scheduler.step()
             
-            # Evaluation
             with torch.no_grad():
-                train_acc = (logits.argmax(-1) == train_lab).float().mean().item()
-                
-                val_feat_norm = F.normalize(val_feat, p=2, dim=-1)
-                val_logits = self.scale * torch.matmul(val_feat_norm, prototypes.t()) / max(self.tau, 1e-9)
-                val_acc = (val_logits.argmax(-1) == val_lab).float().mean().item()
+                train_acc = (s_logits.argmax(-1) == train_labels).float().mean().item()
             
             history['train_loss'].append(loss.item())
             history['train_acc'].append(train_acc)
-            history['val_acc'].append(val_acc)
-            
-            # Best model
-            if val_acc > best_val_acc:
-                best_val_acc = val_acc
-                best_prototypes = self._ft_prototypes.data.clone()
+            history['val_acc'].append(train_acc)
             
             if verbose and (epoch + 1) % 5 == 0:
+                ent_str = f", Ent={entropy.item():.3f}" if do_trans else ""
                 print(f"    Epoch {epoch+1}/{epochs}: Loss={loss.item():.4f}, "
-                      f"Train={train_acc*100:.1f}%, Val={val_acc*100:.1f}%")
-        
-        # Restore best
-        if best_prototypes is not None:
-            self._ft_prototypes.data = best_prototypes
-            if verbose:
-                print(f"    Best Val Acc: {best_val_acc*100:.2f}%")
+                      f"Train={train_acc*100:.1f}%{ent_str}")
         
         self.eval()
         return history
     
     def forward_with_finetuned_prototypes(self, x: torch.Tensor) -> Dict[str, torch.Tensor]:
-        """
-        Fine-tuned prototypes로 inference
-        
-        finetune_prototypes() 호출 후 사용
-        """
         if not self._finetuning_enabled:
             return self.forward(x)
         
-        # Dtype 일치
         dtype = next(self.zifa.parameters()).dtype
         x_typed = x.to(dtype=dtype)
         
-        # Adapter
         embeddings = self._apply_adapter(x_typed)
         embeddings = F.normalize(embeddings.float(), p=2, dim=-1)
         
-        # Fine-tuned prototypes
-        prototypes = F.normalize(self._ft_prototypes, p=2, dim=-1)
-        cos_sim = torch.matmul(embeddings, prototypes.t())
+        bias = self._ft_bias if hasattr(self, '_ft_bias') else None
         
-        # MVREC activation
-        alpha = self.scale
-        logits = ((-1) * (alpha - alpha * cos_sim)).exp()
+        if self.classifier_mode == "linear":
+            logits = self._compute_logits(embeddings, self._ft_prototypes, bias)
+        else:
+            prototypes = F.normalize(self._ft_prototypes, p=2, dim=-1)
+            logits = self._compute_logits(embeddings, prototypes, bias)
         
-        # Temperature scaling
-        tau = max(self.tau, 1e-9)
-        logits_scaled = logits / tau
+        predicts = logits.softmax(dim=-1)
         
-        predicts = logits_scaled.softmax(dim=-1)
-        
-        return {
-            "predicts": predicts,
-            "logits": logits_scaled,
-            "embeddings": embeddings
-        }
+        return {"predicts": predicts, "logits": logits, "embeddings": embeddings}
     
     # ========================================================================
     # Utilities
     # ========================================================================
     
     def get_support_info(self) -> Dict:
-        """Support set 정보 반환"""
         if self.support_features is None:
             return {"status": "empty"}
-        
         unique, counts = torch.unique(self.support_labels, return_counts=True)
         return {
             "status": "configured",
             "total_samples": self.support_features.shape[0],
             "num_classes": self.num_classes,
             "samples_per_class": dict(zip(unique.tolist(), counts.tolist())),
-            "finetuning_enabled": self._finetuning_enabled
+            "finetuning_enabled": self._finetuning_enabled,
+            "classifier_mode": self.classifier_mode,
         }
     
     def clear_support(self):
-        """Support 초기화"""
         self.support_features = None
         self.support_labels = None
         self.num_classes = 0
         self._finetuning_enabled = False
         if hasattr(self, '_ft_prototypes'):
             delattr(self, '_ft_prototypes')
+        if hasattr(self, '_ft_bias'):
+            delattr(self, '_ft_bias')
