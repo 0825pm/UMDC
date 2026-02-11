@@ -96,9 +96,7 @@ base_param.debug=Param(k_patch=2,sdpa_scale=300,ft_epo=500,train_sk=False,  # No
                        infer_style="assemble_uncertainty",
                        zip_config_index=6,
                        text_logits_wight=0,
-                       uncertainty_alpha=2,
-                       taskres_beta=0.3,
-                       taskres_alpha=0.5)
+                       uncertainty_alpha=2)
 
 
 

@@ -1,0 +1,29 @@
+============================================
+  Unified EchoClassfierF Hyperparameter Sweep
+============================================
+
+>>> ft_epo=50, zip=7, beta=1
+
+>>> ft_epo=100, zip=7, beta=1
+
+>>> ft_epo=200, zip=7, beta=1
+
+>>> ft_epo=300, zip=7, beta=1
+
+>>> ft_epo=500, zip=7, beta=1
+
+>>> zip_config=1, ft_epo=500, beta=1
+
+>>> zip_config=6, ft_epo=500, beta=1
+
+>>> acti_beta=1, zip=7, ft_epo=500
+
+>>> acti_beta=5, zip=7, ft_epo=500
+
+>>> acti_beta=10, zip=7, ft_epo=500
+
+>>> acti_beta=20, zip=7, ft_epo=500
+
+============================================
+  Sweep complete! Check OUTPUT/unified_echof/results.csv
+============================================

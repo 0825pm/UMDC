@@ -150,7 +150,7 @@ class ClipModel(ModelBase):
         device=backbone.device
         assert classifier in  [ "ClipZeroShot",
                                 "CosimClassfier",
-                               "EchoClassfier" ,"EchoClassfierT","EchoClassfierF","EchoClassfierF_TR","EchoClassfier_text","EchoClassfierF_text",
+                               "EchoClassfier" ,"EchoClassfierT","EchoClassfierF","EchoClassfier_text","EchoClassfierF_text",
                                "TipAdapter","TipAdapterF",
                                "LinearProbeClassifier",
                                "TransformerClassifier",
@@ -169,8 +169,6 @@ class ClipModel(ModelBase):
             head=EchoClassfier(text_features)
         elif classifier=="EchoClassfierF":
             head=EchoClassfierF(text_features)
-        elif classifier=="EchoClassfierF_TR":
-            head=EchoClassfierF_TR(text_features)
         elif classifier=="EchoClassfierF_text":
             head=EchoClassfierF_text(text_features)
         elif classifier=="EchoClassfier_text":

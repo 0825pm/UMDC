@@ -741,10 +741,6 @@ class EchoClassfier(TipAdapter):
             # assert False
             criterion = nn.CrossEntropyLoss() 
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, total_steps,eta_min=lr*0.1)
-        # CLAP-style: save initial support_key as anchor (before training)
-        _clap_lambda = getattr(self, 'clap_lambda', 0)
-        if _clap_lambda > 0 and hasattr(self, 'support_key'):
-            _initial_support_key = self.support_key.detach().clone()
         # 设定训练模式
         self.train()
 
@@ -769,9 +765,6 @@ class EchoClassfier(TipAdapter):
                         loss = criterion(outputs["logits"],outputs["embeddings"], targets)
                     else:
                          loss = criterion(outputs["logits"], targets)
-                    # CLAP-style regularization: penalize deviation from initial support_key
-                    if _clap_lambda > 0 and hasattr(self, 'support_key'):
-                        loss = loss + _clap_lambda * F.mse_loss(self.support_key, _initial_support_key)
                         # Early stopping if loss falls below 0.05
                 # if loss.item() < 0.02:
                 #     print("Early stopping triggered as loss fell below 0.05")
@@ -1231,99 +1224,3 @@ class EchoClassfierF_text(EchoClassfierF):
     #     predicts = logits.softmax(dim=-1)
     #     return { "predicts": predicts, "logits": logits}
     
-
-# ============================================================
-# TaskRes-enhanced MVREC (Our Contribution)
-# ============================================================
-
-class EchoClassfierF_TR(EchoClassfierF):
-    """EchoClassfierF + TaskRes prototype refinement.
-    
-    After MVREC's self-referential FT (support_key + ZiFA),
-    adds low-rank residual refinement on class prototypes.
-    Forward: ensemble of SDPA logits + cosine prototype logits.
-    """
-
-    def init_weight(self, cache_keys, cache_vals):
-        # Step 1: Full MVREC FT
-        EchoClassfierF.init_weight(self, cache_keys, cache_vals)
-        
-        # Step 2: Class prototypes from trained features
-        self.float()  # Ensure consistent dtype after mixed-precision training
-        with torch.no_grad():
-            support_emb = self.zifa(self.support_key)
-            prototypes = compute_class_prototypes(support_emb, self.nk_class_index)
-        
-        C, D = prototypes.shape
-        device = prototypes.device
-        
-        # Step 3: Low-rank residual
-        rank = min(16, C)
-        self.taskres_U = nn.Parameter(torch.zeros(C, rank, device=device))
-        self.taskres_V = nn.Parameter(torch.zeros(rank, D, device=device))
-        nn.init.normal_(self.taskres_U, std=0.01)
-        nn.init.normal_(self.taskres_V, std=0.01)
-        self.register_buffer("base_prototypes", prototypes.detach())
-        
-        from lyus.Frame import Experiment
-        self.taskres_beta = float(getattr(Experiment().get_param().debug, 'taskres_beta', 0.3))
-        self.taskres_alpha_val = float(getattr(Experiment().get_param().debug, 'taskres_alpha', 0.5))
-        
-        # Step 4: Train TaskRes
-        self._train_taskres()
-
-    def _get_refined_prototypes(self):
-        residual = self.taskres_U @ self.taskres_V
-        return self.base_prototypes + self.taskres_alpha_val * residual
-
-    def _train_taskres(self):
-        params = [self.taskres_U, self.taskres_V]
-        optimizer = torch.optim.AdamW(params, lr=0.01, weight_decay=0.01)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=50)
-        criterion = nn.CrossEntropyLoss()
-        
-        with torch.no_grad():
-            support_emb = self.zifa(self.support_key).detach()
-        
-        tau = self.tau if self.tau and self.tau > 1e-9 else 1e-9
-        
-        for epoch in range(50):
-            prototypes = self._get_refined_prototypes()
-            p_norm = F.normalize(prototypes, p=2, dim=1)
-            s_norm = F.normalize(support_emb, p=2, dim=1)
-            logits = s_norm @ p_norm.T / (tau + 1e-9)
-            loss = criterion(logits, self.nk_class_index)
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            scheduler.step()
-        
-        print(f"    [TaskRes] Trained: C={self.base_prototypes.shape[0]}, rank={self.taskres_U.shape[1]}, beta={self.taskres_beta}")
-
-    def forward(self, x):
-        # During MVREC train_compact, TaskRes not yet initialized
-        if not hasattr(self, 'taskres_U'):
-            return EchoClassfierF.forward(self, x)
-        
-        # MVREC SDPA path
-        embeddings = self.zifa(x)
-        support_key = self.zifa(self.support_key)
-        logits_list = []
-        for sdpa in self.msdpa:
-            logits = sdpa(embeddings, support_key)
-            logits_list.append(logits)
-        sdpa_logits = torch.stack(logits_list).mean(dim=0, keepdim=False)
-        tau = self.tau if self.tau and self.tau > 1e-9 else 1e-9
-        sdpa_logits = sdpa_logits / (tau + 1e-9)
-        
-        # TaskRes prototype path
-        prototypes = self._get_refined_prototypes()
-        p_norm = F.normalize(prototypes, p=2, dim=1)
-        e_norm = F.normalize(embeddings, p=2, dim=1)
-        proto_logits = e_norm @ p_norm.T / (tau + 1e-9)
-        
-        # Ensemble
-        beta = self.taskres_beta
-        logits = (1 - beta) * sdpa_logits + beta * proto_logits
-        predicts = logits.softmax(dim=-1)
-        return {"predicts": predicts, "logits": logits, "embeddings": embeddings}
