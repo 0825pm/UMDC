@@ -73,6 +73,18 @@ def parse_args():
                         choices=["assemble_on_embed", "assemble_on_logits", "assemble_uncertainty"])
     parser.add_argument("--multiview", action="store_true", default=True, help="Use multiview features")
     parser.add_argument("--no_multiview", dest="multiview", action="store_false")
+    # TransCLIP options
+    parser.add_argument("--use_transclip", action="store_true", default=False,
+                        help="Apply TransCLIP transductive inference on top of EchoClassfierF")
+    parser.add_argument("--transclip_gamma", type=float, default=None,
+                        help="Fix TransCLIP gamma (skip validation sweep). Try 0.01")
+    parser.add_argument("--transclip_lambda", type=float, default=None,
+                        help="Fix TransCLIP lambda (initial prediction trust). Default 0.5, try 0.8-0.95")
+    parser.add_argument("--transclip_nn", type=int, default=None,
+                        help="TransCLIP n_neighbors for affinity matrix. Default 3")
+    parser.add_argument("--proxy_style", type=str, default="onehot",
+                        choices=["onehot", "text", "onehot_text"])
+    parser.add_argument("--tgpr_alpha", type=float, default=0, help="TGPR alpha (0=off)")
     return parser.parse_args()
 
 
@@ -249,6 +261,116 @@ def evaluate(classifier, query_samples, device, batch_size=64, multiview=True):
     return correct / total if total > 0 else 0.0
 
 
+def evaluate_with_transclip(classifier, query_samples, text_features, support_k_shot,
+                             num_classes, device, batch_size=64, multiview=True,
+                             transclip_gamma=None, transclip_lambda=None, transclip_nn=None):
+    """
+    Evaluate with TransCLIP transductive inference on top of EchoClassfierF.
+    
+    1. Collect all query embeddings (after ZiFA) and initial predictions from EchoClassfierF
+    2. Collect support embeddings (after ZiFA) and labels
+    3. Run TransCLIP solver to refine predictions using query distribution structure
+    
+    Returns: (transclip_acc, base_acc) - TransCLIP accuracy and baseline accuracy
+    """
+    from modules.transclip import TransCLIP_solver
+    
+    classifier.eval()
+    
+    # === Step 1: Collect all query features and predictions ===
+    all_embeddings = []
+    all_preds = []
+    all_labels = []
+    
+    for start in range(0, len(query_samples), batch_size):
+        batch = query_samples[start:start + batch_size]
+        mvrec_list = [sam['mvrec'] for sam in batch]
+        labels = [sam['y'].item() for sam in batch]
+        
+        mvrec = torch.stack(mvrec_list).to(device)
+        if len(mvrec.shape) == 4:
+            b, v, l, c = mvrec.shape
+            if multiview:
+                mvrec = mvrec.reshape(b, v * l, c)
+            else:
+                mvrec = mvrec[:, :1, :, :].reshape(b, l, c)
+        embeddings = mvrec.mean(dim=1)  # [B, C]
+        
+        with torch.no_grad(), torch.cuda.amp.autocast():
+            results = classifier(embeddings)
+        
+        all_embeddings.append(results['embeddings'].float())
+        all_preds.append(results['predicts'].float())
+        all_labels.extend(labels)
+    
+    query_features = torch.cat(all_embeddings, dim=0)         # [Q, d]
+    initial_predictions = torch.cat(all_preds, dim=0)          # [Q, K]
+    query_labels = torch.tensor(all_labels, dtype=torch.long)  # [Q]
+    
+    # Normalize query features (TransCLIP uses cosine similarity for affinity)
+    query_features = F.normalize(query_features, p=2, dim=1)
+    
+    # Base accuracy (before TransCLIP)
+    base_preds = initial_predictions.argmax(dim=1).cpu()
+    base_acc = (base_preds == query_labels).float().mean().item()
+    
+    # === Step 2: Collect support features (after ZiFA) ===
+    support_mvrecs = []
+    support_labels_list = []
+    for sam in support_k_shot:
+        support_mvrecs.append(sam['mvrec'])
+        support_labels_list.append(sam['y'].item())
+    
+    support_mvrec = torch.stack(support_mvrecs).to(device)
+    if len(support_mvrec.shape) == 4:
+        b, v, l, c = support_mvrec.shape
+        if multiview:
+            support_mvrec = support_mvrec.reshape(b, v * l, c)
+        else:
+            support_mvrec = support_mvrec[:, :1, :, :].reshape(b, l, c)
+    support_embed_raw = support_mvrec.mean(dim=1)  # [S, C]
+    
+    with torch.no_grad(), torch.cuda.amp.autocast():
+        support_features = classifier.zifa(support_embed_raw).float()
+    support_features = F.normalize(support_features, p=2, dim=1)  # [S, d]
+    
+    support_labels_t = torch.tensor(support_labels_list, dtype=torch.long, device=device)
+    support_labels_onehot = F.one_hot(support_labels_t, num_classes=num_classes).float()  # [S, K]
+    
+    # === Step 3: Prepare text prototypes (clip_prototypes) ===
+    # TransCLIP expects clip_prototypes shape: (d, K)
+    clip_prototypes = F.normalize(text_features.float(), p=2, dim=1).T.to(device)  # [d, K]
+    
+    # === Step 4: Validation split (use min(4*K, S) support samples) ===
+    K = num_classes
+    n_val = min(4 * K, len(support_k_shot))
+    val_features = support_features[:n_val]
+    val_labels = support_labels_t[:n_val]
+    
+    # === Step 5: Run TransCLIP ===
+    print(f"    TransCLIP: Q={query_features.shape[0]}, S={support_features.shape[0]}, "
+          f"K={K}, d={query_features.shape[1]}")
+    
+    # support_features needs unsqueeze for TransCLIP
+    z, transclip_acc = TransCLIP_solver(
+        support_features=support_features.unsqueeze(0),
+        support_labels=support_labels_onehot,
+        val_features=val_features,
+        val_labels=val_labels,
+        query_features=query_features,
+        query_labels=query_labels.to(device),
+        clip_prototypes=clip_prototypes,
+        initial_prototypes=None,
+        initial_predictions=initial_predictions.to(device),
+        verbose=True,
+        gamma_override=transclip_gamma,
+        lambda_override=transclip_lambda,
+        n_neighbors_override=transclip_nn
+    )
+    
+    return transclip_acc / 100.0, base_acc  # TransCLIP returns percentage
+
+
 # ============================================================
 # 7. Setup lyus Experiment (for EchoClassfierF internal calls)
 # ============================================================
@@ -378,6 +500,7 @@ def main():
     print(f"  zip_config={args.zip_config_index}, acti_beta={args.acti_beta}")
     print(f"  clap_lambda={args.clap_lambda}")
     print(f"  infer_style={args.infer_style}, multiview={args.multiview}")
+    print(f"  use_transclip={args.use_transclip}")
     print("=" * 60)
     
     # Build unified class info
@@ -439,10 +562,21 @@ def main():
         classifier.init_weight(cache_keys, cache_vals)
         
         # Evaluate
-        acc = evaluate(classifier, query_data, DEVICE,
-                       batch_size=64, multiview=args.multiview)
-        results.append(acc)
-        print(f"  Sampling {seed:2d}: {acc:.4f} ({acc*100:.2f}%)")
+        if args.use_transclip:
+            transclip_acc, base_acc = evaluate_with_transclip(
+                classifier, query_data, text_features, support_k,
+                num_classes, DEVICE, batch_size=64, multiview=args.multiview,
+                transclip_gamma=args.transclip_gamma,
+                transclip_lambda=args.transclip_lambda,
+                transclip_nn=args.transclip_nn)
+            results.append(transclip_acc)
+            print(f"  Sampling {seed:2d}: base={base_acc:.4f} → TransCLIP={transclip_acc:.4f} "
+                  f"({transclip_acc*100:.2f}%, Δ={((transclip_acc-base_acc)*100):+.2f}%)")
+        else:
+            acc = evaluate(classifier, query_data, DEVICE,
+                           batch_size=64, multiview=args.multiview)
+            results.append(acc)
+            print(f"  Sampling {seed:2d}: {acc:.4f} ({acc*100:.2f}%)")
     
     # Summary
     mean_acc = np.mean(results)
@@ -463,11 +597,15 @@ def main():
         writer = csv.writer(f)
         if write_header:
             writer.writerow(["k_shot", "zip_config", "acti_beta", "sdpa_scale",
-                             "clap_lambda", "text_logits_wight", "infer_style", "multiview",
+                             "ft_epo", "proxy_style", "tgpr_alpha",
+                             "text_logits_wight", "infer_style", "multiview",
+                             "use_transclip",
                              "mean_acc", "std_acc", "num_sampling", "all_acc"])
         writer.writerow([
             args.k_shot, args.zip_config_index, args.acti_beta, args.sdpa_scale,
-            args.clap_lambda, args.text_logits_wight, args.infer_style, args.multiview,
+            args.ft_epo, args.proxy_style, args.tgpr_alpha,
+            args.text_logits_wight, args.infer_style, args.multiview,
+            args.use_transclip,
             f"{mean_acc:.4f}", f"{std_acc:.4f}", args.num_sampling,
             "|".join(f"{a:.4f}" for a in results),
         ])
@@ -478,7 +616,8 @@ def main():
     print("Reference (per-category, from MVREC paper):")
     print("  EchoClassfier  (no train): 86.1%  (5-shot)")
     print("  EchoClassfierF (train):    89.4%  (5-shot)")
-    print(f"\nUnified EchoClassfierF:      {mean_acc*100:.2f}% ± {std_acc*100:.2f}%")
+    method_name = "Unified EchoClassfierF + TransCLIP" if args.use_transclip else "Unified EchoClassfierF"
+    print(f"\n{method_name}:  {mean_acc*100:.2f}% ± {std_acc*100:.2f}%")
     gap = mean_acc * 100 - 89.4
     print(f"Gap vs per-category:         {gap:+.2f}%")
     print("=" * 60)

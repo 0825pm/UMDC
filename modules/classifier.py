@@ -459,6 +459,11 @@ class TipAdapter(BaseClassifier):
 
         tau = self.tau if self.tau and self.tau > 1e-9 else 1e-9
         logits = logits / (tau + 1e-9)
+        
+        # === Inference-time TGPR: cross-category logit refinement ===
+        if getattr(self, 'tgpr_alpha', 0) > 0 and hasattr(self, 'tgpr_text_sim'):
+            logits = logits + self.tgpr_alpha * (logits @ self.tgpr_text_sim)
+        
         predicts = logits.softmax(dim=-1)
 
         return { "predicts": predicts, "logits": logits}
@@ -609,6 +614,16 @@ class EchoClassfier(TipAdapter):
         logits = torch.stack(logits_list).mean(dim=0, keepdim=False)
         tau = self.tau if self.tau and self.tau > 1e-9 else 1e-9
         logits = logits / (tau + 1e-9)
+        
+        # === Inference-time TGPR ===
+        tgpr_beta = getattr(self, 'tgpr_beta', 0.0)
+        if tgpr_beta > 0 and not self.training:
+            text_feat_norm = F.normalize(self.text_features_tensor.float(), p=2, dim=1)
+            text_sim = text_feat_norm @ text_feat_norm.T  # [K, K]
+            text_sim.fill_diagonal_(0)
+            text_sim = F.softmax(text_sim / 0.1, dim=1)
+            logits = logits + tgpr_beta * (logits @ text_sim)
+        
         predicts = logits.softmax(dim=-1)
         # predicts= logits
         return { "predicts": predicts, "logits": logits,"embeddings":embeddings}     
@@ -616,7 +631,7 @@ class EchoClassfier(TipAdapter):
 
 
     def init_weight(self, cache_keys:torch.tensor, cache_vals:torch.tensor):
-        self._init_weight(cache_keys,cache_vals,"onehot")
+        self._init_weight(cache_keys,cache_vals, getattr(self, 'proxy_style', 'onehot'))
 
 
     def _init_weight(self, cache_keys:torch.tensor, cache_vals:torch.tensor,proxy_style):
@@ -685,6 +700,19 @@ class EchoClassfier(TipAdapter):
 
         self.support_key= nn.Parameter(nk_img_prototype)  
 
+        # === TGPR: Precompute text similarity matrix for inference-time refinement ===
+        tgpr_alpha = getattr(self, 'tgpr_alpha', 0.0)
+        if tgpr_alpha > 0:
+            text_feat_norm = F.normalize(self.text_features_tensor.float(), p=2, dim=1)  # [K, 768]
+            text_sim = text_feat_norm @ text_feat_norm.T  # [K, K]
+            text_sim.fill_diagonal_(0)
+            text_sim = F.softmax(text_sim / 0.1, dim=1)
+            self.register_buffer("tgpr_text_sim", text_sim)
+            self.tgpr_alpha = tgpr_alpha
+            print(f"  TGPR (inference-time): alpha={tgpr_alpha}")
+        else:
+            self.tgpr_alpha = 0.0
+
         self.msdpa=torch.nn.Sequential(*[SdpaModule(None,nk_class_index,proxy,scale=scale)
                     for proxy,scale in zip(proxies,scale_list)])
 
@@ -741,10 +769,6 @@ class EchoClassfier(TipAdapter):
             # assert False
             criterion = nn.CrossEntropyLoss() 
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, total_steps,eta_min=lr*0.1)
-        # CLAP-style: save initial support_key as anchor (before training)
-        _clap_lambda = getattr(self, 'clap_lambda', 0)
-        if _clap_lambda > 0 and hasattr(self, 'support_key'):
-            _initial_support_key = self.support_key.detach().clone()
         # 设定训练模式
         self.train()
 
@@ -769,9 +793,6 @@ class EchoClassfier(TipAdapter):
                         loss = criterion(outputs["logits"],outputs["embeddings"], targets)
                     else:
                          loss = criterion(outputs["logits"], targets)
-                    # CLAP-style regularization: penalize deviation from initial support_key
-                    if _clap_lambda > 0 and hasattr(self, 'support_key'):
-                        loss = loss + _clap_lambda * F.mse_loss(self.support_key, _initial_support_key)
                         # Early stopping if loss falls below 0.05
                 # if loss.item() < 0.02:
                 #     print("Early stopping triggered as loss fell below 0.05")
