@@ -1,0 +1,52 @@
+{
+  "k_shot": 1,
+  "num_sampling": 10,
+  "baseline": {
+    "mean": 70.68,
+    "std": 1.36
+  },
+  "per_category": {
+    "carpet": {
+      "baseline": 68.2
+    },
+    "grid": {
+      "baseline": 42.4
+    },
+    "leather": {
+      "baseline": 80.2
+    },
+    "tile": {
+      "baseline": 93.6
+    },
+    "wood": {
+      "baseline": 65.3
+    },
+    "bottle": {
+      "baseline": 63.4
+    },
+    "cable": {
+      "baseline": 76.7
+    },
+    "capsule": {
+      "baseline": 50.4
+    },
+    "hazelnut": {
+      "baseline": 70.3
+    },
+    "metal_nut": {
+      "baseline": 76.2
+    },
+    "pill": {
+      "baseline": 70.2
+    },
+    "screw": {
+      "baseline": 81.7
+    },
+    "transistor": {
+      "baseline": 87.6
+    },
+    "zipper": {
+      "baseline": 73.3
+    }
+  }
+}

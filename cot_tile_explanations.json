@@ -1,0 +1,362 @@
+[
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow, and continuous crack running through the surface of the tile.\nClass: crack\nReason: The defect pattern in the query image closely matches the reference example of a \"crack,\" characterized by its linear and elongated nature, which is consistent with the appearance of a crack in the tile.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow crack running through the center of the tile, with a small white spot at the bottom where the crack intersects the surface.\n\nClass: crack\nReason: The defect in the query image matches the appearance of the \"crack\" reference example, characterized by a linear, elongated opening in the material. The other reference types do not resemble the pattern observed in the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow, and continuous line that appears to be a crack running through the surface of the tile.\nClass: crack\nReason: The defect pattern in the query image closely resembles the reference example of a \"crack,\" characterized by its linear and continuous nature. The other reference types do not match the observed pattern as closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a triangular piece of material that appears to be stuck or adhered to the surface, with a smooth and slightly reflective edge.\n\nClass: glue_strip\nReason: The triangular shape and the smooth, reflective edge resemble the appearance of a glue strip that has been applied to the surface. The other reference images do not match the characteristics of the query image as closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a rectangular area with a smooth, shiny surface that appears to be a piece of material adhered to another surface. The edges are sharp and well-defined, suggesting it is a deliberate application rather than a defect.\n\nClass: glue_strip\nReason: The defect pattern in the query image closely resembles the reference example of a \"glue_strip,\" which typically involves a strip of adhesive material applied to a surface. The smooth, shiny appearance and the defined edges align with the characteristics of a glue strip defect.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a piece of material that appears to be a glue strip, with a distinct adhesive layer and a slightly raised edge.\n\nClass: glue_strip\nReason: The query image closely resembles the reference example of a \"glue_strip,\" characterized by its adhesive layer and raised edge, which is consistent with the appearance of the reference image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "gray_stroke",
+    "correct": true,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background with a speckled texture.\nClass: gray_stroke\nReason: The defect in the query image resembles the shape and texture of the \"gray_stroke\" reference example, which is characterized by a dark, irregular patch on a lighter surface. The speckled texture also matches the appearance of the \"gray_stroke\" reference.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "rough",
+    "correct": false,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background with a speckled texture. There is no visible crack, glue strip, or oil stain. The surface appears to have a rough texture.\n\nClass: rough\nReason: The defect in the query image matches the appearance of the \"rough\" reference example, characterized by an uneven and textured surface without any distinct shape or pattern that would fit the other categories.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "rough",
+    "correct": false,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background with a speckled texture. There is no visible crack, glue strip, or oil stain. The surface appears to have a rough texture around the dark area.\n\nClass: rough\nReason: The dark area has a rough texture that matches the reference example of \"rough,\" which also shows a similar dark spot with a rough surrounding texture. The other reference types do not match the observed characteristics of the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a yellowish patch with a slightly irregular shape and some darker spots within it.\nClass: oil\nReason: The yellowish patch in the query image resembles the appearance of an oil spill, which is characterized by its distinct color and texture. Comparing it to the reference images, the oil patch in the query image most closely matches the appearance of the \"oil\" reference example.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a large, irregularly shaped area with a lighter color and a slightly glossy appearance, surrounded by darker spots that resemble a speckled surface.\n\nClass: oil\nReason: The query image closely resembles the reference example for \"oil,\" which also displays a large, irregularly shaped area with a lighter color and a glossy appearance, surrounded by darker spots on a similar speckled surface. The texture and color contrast are consistent with the reference example of oil contamination.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a shiny, reflective surface and a darker center, surrounded by a lighter ring.\n\nClass: oil\nReason: The circular, shiny, and reflective appearance is characteristic of an oil spill on a tile surface. This matches the reference example of \"oil\" closely, where the oil appears as a distinct, circular patch with a glossy texture. The other reference types do not exhibit similar characteristics.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "oil",
+    "correct": false,
+    "response": "Observation: The query image shows a small, irregularly shaped area with a lighter color compared to the surrounding surface, which appears to be a speckled pattern.\n\nClass: oil\nReason: The lighter, irregular shape and the contrast with the surrounding speckled pattern resemble the appearance of an oil spill on a surface, similar to the \"oil\" reference example provided.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "oil",
+    "correct": false,
+    "response": "Observation: The query image shows a large, irregularly shaped area with a shiny, reflective surface that appears to be oil or a similar substance spread across it.\n\nClass: oil\nReason: The shiny, reflective appearance and the irregular shape are characteristic of an oil spill on a surface, which matches the reference example of \"oil.\" The other reference types do not exhibit the same reflective quality or shape as seen in the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "oil",
+    "correct": false,
+    "response": "Observation: The query image shows a small, irregularly shaped area with a lighter color compared to the surrounding surface, which appears to be a speckled pattern.\n\nClass: oil\nReason: The lighter, irregular shape and the contrast with the surrounding surface resemble the appearance of an oil spill on a tile surface. The other reference types do not match the observed pattern as closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow, dark line running through the center of the image, which appears to be a crack in the tile surface.\n\nClass: crack\nReason: The defect pattern in the query image closely resembles the \"crack\" reference example, characterized by a long, narrow, and continuous dark line that is indicative of a crack in the tile material. The other reference types do not match the observed pattern as closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow, dark line running across the surface of the tile, which appears to be a crack.\n\nClass: crack\nReason: The defect in the query image matches the appearance of a crack, which is characterized by a linear, elongated, and continuous line that disrupts the uniformity of the tile's surface. This is consistent with the reference example of a crack shown in the first image provided. The other reference types do not match the observed defect pattern in the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow, and continuous line that appears to be a crack running across the surface of the tile.\nClass: crack\nReason: The defect in the query image matches the appearance of a crack, which is characterized by a linear, elongated, and continuous line that disrupts the uniformity of the tile's surface. This is consistent with the reference example of a \"crack\" provided. The other reference types do not match the observed pattern in the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a triangular piece of material that appears to be stuck or adhered to the surface, with a smooth and shiny texture on its edges and a rougher texture on the surface it is attached to.\n\nClass: glue_strip\nReason: The triangular shape and the smooth, shiny texture on the edges resemble the appearance of a glue strip, which is often used to adhere materials to surfaces. The rougher texture on the surface it is attached to further supports this classification as it could be the result of the adhesive material being applied unevenly or the surface itself having a different texture.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a long, narrow, and irregularly shaped area that appears to be a residue or a strip of material on a surface with a speckled background.\n\nClass: glue_strip\nReason: The elongated shape and the way it is adhered to the surface resemble the appearance of a glue strip. The texture and color contrast with the surrounding area also support this classification.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a long, irregularly shaped area that appears to be a residue or a strip of material on a surface with a speckled background. The texture and shape suggest it could be a glue strip or a similar adhesive residue.\n\nClass: glue_strip\nReason: The elongated, irregular shape and the way it adheres to the surface resemble the appearance of a glue strip, which is consistent with the reference example provided. The other types of defects do not match the observed characteristics as closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "gray_stroke",
+    "correct": true,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background with a speckled texture.\nClass: gray_stroke\nReason: The defect in the query image resembles the shape and texture of a \"gray_stroke\" defect, which is characterized by an irregular, dark area on a lighter surface. The speckled background also matches the reference example of a \"gray_stroke.\"",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "rough",
+    "correct": false,
+    "response": "Observation: The query image shows a large, irregularly shaped dark area on a lighter background with a speckled texture. There is no visible crack, glue strip, or oil spill. The surface appears to be rough and uneven.\n\nClass: rough\nReason: The defect in the query image resembles the \"rough\" category, characterized by an uneven and textured surface without any distinct shape or pattern that matches the other reference types.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "gray_stroke",
+    "correct": true,
+    "response": "Observation: The query image shows a large, irregularly shaped dark area on a lighter background with some speckled patterns around it.\n\nClass: gray_stroke\nReason: The defect in the query image resembles the \"gray_stroke\" category, which is characterized by a large, irregularly shaped dark area on a lighter background. The speckled patterns around the main defect also align with the appearance of the \"gray_stroke\" reference example.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a yellowish tint and a darker center, surrounded by a thin, irregular boundary that appears to be a residue or spill.\nClass: oil\nReason: The circular shape, yellowish tint, and the presence of a darker center are characteristic of an oil spill, which matches the \"oil\" reference example closely. The thin, irregular boundary is consistent with the edge of an oil spill on a surface.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a yellowish tint and a darker center, surrounded by a lighter ring. There is a small, irregular shape at the bottom right that appears to be a thin, elongated mark.\n\nClass: oil\nReason: The circular area with a yellowish tint and a darker center resembles the appearance of an oil spill on a surface. The thin, elongated mark at the bottom right could be a minor imperfection or residue related to the oil spill. This matches the reference example of \"oil\" closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a yellowish tint and a darker center, surrounded by a lighter ring. The texture around the defect appears to be consistent with the background material.\n\nClass: oil\nReason: The circular shape with a central darker area and a surrounding lighter ring is characteristic of an oil spill on a surface. This matches the \"oil\" reference example closely, where a similar pattern is observed. The texture and color gradient are also consistent with what one might expect from an oil spill on a tile surface.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "rough",
+    "correct": true,
+    "response": "Observation: The query image shows a small, irregularly shaped area with a lighter color compared to the surrounding surface, which appears to be a speckled pattern.\n\nClass: rough\nReason: The defect in the query image resembles the texture and appearance of the \"rough\" reference example, where there is an uneven, grainy surface that deviates from the uniformity of the rest of the tile. The lighter area could be indicative of a rough patch or imperfection on the tile's surface.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "oil",
+    "correct": false,
+    "response": "Observation: The query image shows a large, irregularly shaped area with a shiny, reflective surface that appears to be a layer of liquid or gel-like substance spreading across the tile surface.\n\nClass: oil\nReason: The shiny, reflective appearance and the way it spreads across the surface are characteristic of an oil spill on a tile. This matches the reference example of \"oil\" where a similar substance is shown on a tile surface. The other reference types do not exhibit the same characteristics as seen in the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "rough",
+    "correct": true,
+    "response": "Observation: The query image shows a small, irregularly shaped area with a shiny, reflective surface that appears to be a localized spot on a textured background. There is no visible crack, glue strip, or rough texture. The shape and appearance do not resemble a gray stroke or an oil spill either.\n\nClass: rough\nReason: The shiny, reflective spot resembles a localized area where the surface has been disturbed or damaged, which aligns with the \"rough\" category. The texture around it suggests a disruption in the material's surface, consistent with the \"rough\" reference example.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a clear, linear crack running through the center of the tile surface.\nClass: crack\nReason: The linear, sharp edges and the distinct separation along the crack are characteristic of a crack, which matches the reference example of a crack. The other types of defects do not exhibit such a clear linear pattern.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a large crack running through the center of the tile, with a small oil spot at the bottom left corner and some minor surface imperfections around it.\n\nClass: crack\nReason: The prominent feature in the query image is a large crack that matches the appearance of the \"crack\" reference example. The other reference types do not match the observed features in the query image.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "crack",
+    "pred": "crack",
+    "correct": true,
+    "response": "Observation: The query image shows a linear crack running across the surface of the tile.\nClass: crack\nReason: The linear crack is clearly visible and matches the appearance of the \"crack\" reference example provided. There are no signs of glue strips, gray strokes, oil spots, or rough textures that would suggest any of the other categories.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a triangular piece of material that appears to be stuck or adhered to the surface of a tile. The material has a shiny, reflective surface and is not seamlessly integrated with the tile's texture.\n\nClass: glue_strip\nReason: The triangular shape and the shiny, reflective surface resemble the appearance of a glue strip that might have been applied to the tile but is now detached or partially removed. This matches the reference example of a \"glue_strip\" defect.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a rectangular area that appears to be a piece of material adhered to a surface, with a noticeable gap between it and the surrounding area. The edges of the material are slightly irregular, and there is a visible line where the material meets the surface.\n\nClass: glue_strip\nReason: The rectangular shape and the gap suggest that the material could be a strip of adhesive or sealant that has been applied to the surface but is not fully adhered, resembling a glue strip. This matches the appearance of the \"glue_strip\" reference example closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "glue_strip",
+    "pred": "glue_strip",
+    "correct": true,
+    "response": "Observation: The query image shows a piece of material that appears to be partially peeled off from a surface, revealing a different texture underneath. There is a noticeable gap between the two layers, and the edges of the peeled material are irregular and slightly curled.\n\nClass: glue_strip\nReason: The peeled material resembles a strip of adhesive or sealant that has been removed, leaving behind a gap where it was attached. This matches the appearance of a \"glue_strip\" defect, which typically involves a strip of material being lifted or peeled away, exposing the underlying surface.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "rough",
+    "correct": false,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background with a speckled texture. There is no visible crack, glue strip, or oil stain. The surface appears to have a rough texture around the darker area.\n\nClass: rough\nReason: The texture and appearance of the darker area in the query image closely resemble the \"rough\" reference example, characterized by a speckled and uneven surface.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "oil",
+    "correct": false,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background, resembling a stain or discoloration.\nClass: oil\nReason: The dark, irregular shape and the way it contrasts with the lighter background are similar to the reference image of \"oil,\" which also appears as a dark, irregular spot on a lighter surface. The other reference images do not match the observed pattern as closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "gray_stroke",
+    "pred": "rough",
+    "correct": false,
+    "response": "Observation: The query image shows a dark, irregularly shaped area on a lighter background with a speckled texture. There is no visible crack, glue strip, or oil stain. The surface appears to have a rough texture around the darker area.\n\nClass: rough\nReason: The texture around the darker area resembles the \"rough\" category, which typically indicates a surface that is not smooth and may have imperfections or variations in texture. The darker area itself does not fit any of the other categories provided.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a yellowish tint and some darker spots within it, surrounded by a lighter background with a speckled pattern.\n\nClass: oil\nReason: The circular shape with a yellowish tint and darker spots is characteristic of an oil spill on a surface, which matches the \"oil\" reference example closely. The speckled background also resembles the texture seen in the \"oil\" reference.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a yellowish tint and a darker center, surrounded by a lighter ring. There is a thin, curved line at the edge of the circle that appears to be a reflection or a boundary.\n\nClass: oil\nReason: The circular shape with a central dark area and a surrounding lighter ring is characteristic of an oil spill on a surface. The thin, curved line at the edge resembles the reflection or boundary often seen around oil spills. This matches the \"oil\" reference example closely.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "oil",
+    "pred": "oil",
+    "correct": true,
+    "response": "Observation: The query image shows a circular area with a yellowish tint and a darker center, surrounded by a lighter ring. There is a noticeable oily sheen around the edges.\n\nClass: oil\nReason: The circular shape, the oily sheen, and the color gradient are characteristic of an oil spill on a surface, which matches the \"oil\" reference example closely. The other reference types do not exhibit similar characteristics.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "rough",
+    "correct": true,
+    "response": "Observation: The query image shows a small, irregularly shaped area with a light-colored spot surrounded by darker speckles. There is no visible crack, glue strip, or oil stain. The surface appears to have a rough texture around the spot.\n\nClass: rough\nReason: The rough texture around the light-colored spot is most similar to the \"rough\" reference example, where there is a noticeable unevenness and variation in the surface finish.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "rough",
+    "correct": true,
+    "response": "Observation: The query image shows a shiny, reflective surface with a distinct streak running horizontally across it. The streak appears to be a thin, elongated area with a metallic sheen, suggesting a possible contamination or residue.\n\nClass: rough\nReason: The streak in the query image resembles the \"rough\" category, which typically indicates an uneven or textured surface. While the other categories like \"crack,\" \"glue_strip,\" \"gray_stroke,\" and \"oil\" have more defined shapes or patterns, the streak in the query image lacks the sharp edges or distinct shape that would classify it as any of those. Instead, the streak's appearance is more consistent with a rough texture, where the surface is not smooth but rather has a slightly uneven or bumpy feel.",
+    "k_shot": 1
+  },
+  {
+    "category": "tile",
+    "gt": "rough",
+    "pred": "rough",
+    "correct": true,
+    "response": "Observation: The query image shows a small, irregularly shaped area with a shiny, reflective surface and some dark spots scattered around it. There is no visible crack, glue strip, or oil stain. The texture appears rough, but the overall pattern does not match the reference images for \"rough\" defects.\n\nClass: rough\nReason: The shiny, reflective surface and the presence of dark spots suggest a rough texture, which aligns with the \"rough\" reference example. However, the pattern is more localized and less extensive than the typical \"rough\" defect shown in the reference image. Despite this, the query image still exhibits characteristics that are most closely associated with the \"rough\" category among the given options.",
+    "k_shot": 1
+  }
+]

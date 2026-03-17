@@ -1,0 +1,1031 @@
+==============================
+0. BASELINE (γ=2.0, no extras)
+==============================
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.714 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=0.651 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=0.598 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.381 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.283 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.276 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.275 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.5%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.729 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.664 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.609 acc=97.1% lr=0.009912
+  [FT] ep=10: loss=0.382 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.282 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.275 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.716 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.653 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.600 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.380 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.282 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.275 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.8% (Δ=+3.5%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 88.0% ± 0.2%
+  Δ: +3.6%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        84.1%
+  grid                   63.3%        75.5%
+  leather                90.9%        90.9%
+  tile                   92.1%        92.1%
+  wood                   81.9%        94.3%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        94.2%
+  capsule                77.4%        74.8%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        95.3%
+  pill                   80.2%        81.9%
+  screw                  92.2%        93.9%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+
+==============================
+1. LABEL SMOOTHING
+==============================
+--- ls=0.05 ---
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Label Smoothing: 0.05
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.081 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=1.023 acc=94.4% lr=0.009961
+  [FT] ep=2: loss=0.974 acc=97.1% lr=0.009912
+  [FT] ep=10: loss=0.771 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.691 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.666 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.659 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.657 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.05, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.5%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.091 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=1.030 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.980 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.770 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.689 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.665 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.657 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.655 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.05, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.078 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=1.020 acc=95.9% lr=0.009961
+  [FT] ep=2: loss=0.972 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.768 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.690 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.665 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.657 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.656 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.05, noise=0.0
+  Fine-tuned: 87.8% (Δ=+3.5%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 88.0% ± 0.2%
+  Δ: +3.6%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        83.3%
+  grid                   63.3%        75.5%
+  leather                90.9%        90.9%
+  tile                   92.1%        92.9%
+  wood                   81.9%        95.7%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        93.0%
+  capsule                77.4%        73.6%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        95.3%
+  pill                   80.2%        81.9%
+  screw                  92.2%        94.4%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+--- ls=0.1 ---
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Label Smoothing: 0.1
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.448 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=1.391 acc=94.4% lr=0.009961
+  [FT] ep=2: loss=1.344 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=1.128 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.030 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=1.000 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.991 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.990 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.5%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.453 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=1.394 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=1.345 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=1.126 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.028 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.998 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.989 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.988 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 88.5% (Δ=+3.9%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.441 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=1.385 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=1.338 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=1.123 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=1.028 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.999 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.990 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.989 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 88.2% (Δ=+3.9%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 88.2% ± 0.2%
+  Δ: +3.7%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        83.3%
+  grid                   63.3%        74.8%
+  leather                90.9%        91.7%
+  tile                   92.1%        95.2%
+  wood                   81.9%        94.8%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        93.0%
+  capsule                77.4%        73.6%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        96.0%
+  pill                   80.2%        82.3%
+  screw                  92.2%        95.0%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+--- ls=0.15 ---
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Label Smoothing: 0.15
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.815 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=1.757 acc=94.4% lr=0.009961
+  [FT] ep=2: loss=1.707 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=1.459 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.339 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=1.305 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=1.295 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=1.293 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.15, noise=0.0
+  Fine-tuned: 88.1% (Δ=+3.6%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.815 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=1.756 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=1.705 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=1.456 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.337 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.303 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=1.293 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=1.291 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.15, noise=0.0
+  Fine-tuned: 88.5% (Δ=+3.9%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.804 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=1.746 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=1.697 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=1.453 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=1.336 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=1.304 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=1.294 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=1.292 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.15, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.6%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 88.1% ± 0.2%
+  Δ: +3.7%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        83.3%
+  grid                   63.3%        74.8%
+  leather                90.9%        90.9%
+  tile                   92.1%        96.0%
+  wood                   81.9%        93.3%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        93.0%
+  capsule                77.4%        74.2%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        96.7%
+  pill                   80.2%        82.3%
+  screw                  92.2%        95.0%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+
+==============================
+2. FEATURE NOISE
+==============================
+--- noise=0.01 ---
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Feature Noise: σ=0.01
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.714 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=0.651 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=0.599 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.382 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.306 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.284 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.277 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.276 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.01
+  Fine-tuned: 87.8% (Δ=+3.3%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.730 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.665 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.609 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.383 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.306 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.283 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.276 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.01
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.716 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.654 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.601 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.382 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.306 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.283 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.276 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.275 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.01
+  Fine-tuned: 87.5% (Δ=+3.2%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 87.9% ± 0.3%
+  Δ: +3.4%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        84.1%
+  grid                   63.3%        74.8%
+  leather                90.9%        90.9%
+  tile                   92.1%        92.1%
+  wood                   81.9%        94.3%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        93.6%
+  capsule                77.4%        74.8%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        95.3%
+  pill                   80.2%        81.5%
+  screw                  92.2%        93.9%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+--- noise=0.02 ---
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Feature Noise: σ=0.02
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.716 acc=91.8% lr=0.009990
+  [FT] ep=1: loss=0.654 acc=93.8% lr=0.009961
+  [FT] ep=2: loss=0.602 acc=96.2% lr=0.009912
+  [FT] ep=10: loss=0.386 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.309 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.286 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.279 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.277 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.02
+  Fine-tuned: 87.8% (Δ=+3.3%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.731 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.667 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.612 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.387 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.307 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.285 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.278 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.277 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.02
+  Fine-tuned: 88.1% (Δ=+3.5%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.717 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.656 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.604 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.386 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.307 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.285 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.279 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.276 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.02
+  Fine-tuned: 87.6% (Δ=+3.3%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 87.8% ± 0.2%
+  Δ: +3.4%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        84.1%
+  grid                   63.3%        74.8%
+  leather                90.9%        90.9%
+  tile                   92.1%        92.1%
+  wood                   81.9%        94.3%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        93.6%
+  capsule                77.4%        74.2%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        95.3%
+  pill                   80.2%        81.5%
+  screw                  92.2%        93.9%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+--- noise=0.05 ---
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Feature Noise: σ=0.05
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.725 acc=91.8% lr=0.009990
+  [FT] ep=1: loss=0.667 acc=93.8% lr=0.009961
+  [FT] ep=2: loss=0.619 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=0.408 acc=98.8% lr=0.008864
+  [FT] ep=20: loss=0.324 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.300 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.292 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.289 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.05
+  Fine-tuned: 87.6% (Δ=+3.2%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.743 acc=92.1% lr=0.009990
+  [FT] ep=1: loss=0.678 acc=95.0% lr=0.009961
+  [FT] ep=2: loss=0.628 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=0.409 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.324 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.299 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.290 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.290 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.05
+  Fine-tuned: 88.2% (Δ=+3.6%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.729 acc=93.5% lr=0.009990
+  [FT] ep=1: loss=0.671 acc=94.4% lr=0.009961
+  [FT] ep=2: loss=0.619 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.406 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.325 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.299 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.290 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.290 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.05
+  Fine-tuned: 87.5% (Δ=+3.2%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 87.8% ± 0.3%
+  Δ: +3.3%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        84.1%
+  grid                   63.3%        74.1%
+  leather                90.9%        90.9%
+  tile                   92.1%        92.1%
+  wood                   81.9%        93.3%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        94.2%
+  capsule                77.4%        74.8%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        96.0%
+  pill                   80.2%        81.1%
+  screw                  92.2%        93.9%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+
+==============================
+3. TRAIN PROTO
+==============================
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=3
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Learnable Prototypes: ON
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 3 samplings...
+
+--- Sampling 1/3 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.714 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=0.648 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=0.593 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=0.367 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.289 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.265 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.257 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.256 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.0, noise=0.0
+  Fine-tuned: 87.8% (Δ=+3.3%)
+
+--- Sampling 2/3 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.729 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.661 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.603 acc=97.1% lr=0.009912
+  [FT] ep=10: loss=0.369 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.288 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.264 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.256 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.255 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/3 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.716 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.650 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.595 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.367 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.288 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.264 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.256 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.255 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.0, noise=0.0
+  Fine-tuned: 87.4% (Δ=+3.1%)
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.4% ± 0.1%
+  Fine-tuned (Support-only): 87.8% ± 0.4%
+  Δ: +3.4%
+
+Category               Baseline   Unified FT
+─────────────────────────────────────────────
+  carpet                 78.8%        84.1%
+  grid                   63.3%        74.8%
+  leather                90.9%        90.9%
+  tile                   92.1%        92.1%
+  wood                   81.9%        94.3%
+  bottle                 82.3%        83.3%
+  cable                  94.7%        93.0%
+  capsule                77.4%        74.2%
+  hazelnut               83.8%        87.6%
+  metal_nut              90.0%        95.3%
+  pill                   80.2%        81.9%
+  screw                  92.2%        93.9%
+  transistor            100.0%       100.0%
+  zipper                 84.6%        89.0%
+
+Saved: umdc_results.json
+
+==============================
+4. LOGIT ENSEMBLE (5 samplings)
+==============================
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=5
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Logit Ensemble: ON (average across samplings)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 5 samplings...
+
+--- Sampling 1/5 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.714 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=0.651 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=0.598 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.381 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.283 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.276 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.275 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.5%)
+
+--- Sampling 2/5 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.729 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.664 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.609 acc=97.1% lr=0.009912
+  [FT] ep=10: loss=0.382 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.282 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.275 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/5 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.716 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.653 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.600 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.380 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.282 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.275 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.8% (Δ=+3.5%)
+
+--- Sampling 4/5 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.725 acc=91.8% lr=0.009990
+  [FT] ep=1: loss=0.659 acc=95.9% lr=0.009961
+  [FT] ep=2: loss=0.605 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.381 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.282 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.275 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.5% (Δ=+2.9%)
+
+--- Sampling 5/5 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.712 acc=95.3% lr=0.009990
+  [FT] ep=1: loss=0.649 acc=97.1% lr=0.009961
+  [FT] ep=2: loss=0.596 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.380 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.305 acc=99.4% lr=0.006281
+  [FT] ep=30: loss=0.282 acc=99.4% lr=0.003228
+  [FT] ep=40: loss=0.275 acc=99.4% lr=0.000871
+  [FT] ep=49: loss=0.274 acc=99.4% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.8% (Δ=+1.1%)
+
+[Logit Ensemble] Averaging logits from 5 models...
+  Logit Ensemble: 88.5%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.7% ± 0.5%
+  Fine-tuned (Support-only): 87.7% ± 0.5%
+  Δ: +2.9%
+  Logit Ensemble (5x):   88.5%
+  Δ from avg FT: +0.8%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 76.8%        82.3%      79.5%
+  grid                   61.6%        69.8%      71.4%
+  leather                89.1%        90.0%      88.6%
+  tile                   92.9%        92.4%      95.2%
+  wood                   84.9%        94.9%      97.1%
+  bottle                 80.6%        83.8%      87.5%
+  cable                  93.3%        94.0%      93.0%
+  capsule                78.9%        76.6%      75.5%
+  hazelnut               84.0%        86.3%      88.6%
+  metal_nut              89.2%        94.8%      96.0%
+  pill                   80.7%        82.7%      85.2%
+  screw                  93.7%        94.7%      95.0%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.6%        88.5%      89.0%
+
+Saved: umdc_results.json
+
+==============================
+5. BEST COMBO (all together)
+==============================
+/home/vscode/minkh/src/UMDC/run_umdc.py:712: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=5
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Learnable Prototypes: ON
+  ★ Label Smoothing: 0.1
+  ★ Feature Noise: σ=0.02
+  ★ Logit Ensemble: ON (average across samplings)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 5 samplings...
+
+--- Sampling 1/5 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.448 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=1.390 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=1.342 acc=97.1% lr=0.009912
+  [FT] ep=10: loss=1.121 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.019 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.989 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.979 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.977 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.1, noise=0.02
+  Fine-tuned: 87.8% (Δ=+3.3%)
+
+--- Sampling 2/5 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.454 acc=92.1% lr=0.009990
+  [FT] ep=1: loss=1.394 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=1.342 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=1.119 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.016 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.986 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.976 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.975 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.1, noise=0.02
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/5 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.442 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=1.383 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=1.335 acc=97.9% lr=0.009912
+  [FT] ep=10: loss=1.115 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=1.017 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.987 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.978 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.976 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.1, noise=0.02
+  Fine-tuned: 88.2% (Δ=+3.9%)
+
+--- Sampling 4/5 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.452 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=1.393 acc=95.9% lr=0.009961
+  [FT] ep=2: loss=1.343 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=1.119 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.017 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.986 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.977 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.975 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.1, noise=0.02
+  Fine-tuned: 87.8% (Δ=+3.2%)
+
+--- Sampling 5/5 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=1.438 acc=95.3% lr=0.009990
+  [FT] ep=1: loss=1.379 acc=97.1% lr=0.009961
+  [FT] ep=2: loss=1.331 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=1.114 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=1.016 acc=99.4% lr=0.006281
+  [FT] ep=30: loss=0.986 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.976 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.975 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=True, ls=0.1, noise=0.02
+  Fine-tuned: 87.2% (Δ=+1.5%)
+
+[Logit Ensemble] Averaging logits from 5 models...
+  Logit Ensemble: 88.9%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.7% ± 0.5%
+  Fine-tuned (Support-only): 87.9% ± 0.4%
+  Δ: +3.1%
+  Logit Ensemble (5x):   88.9%
+  Δ from avg FT: +1.0%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 76.8%        81.4%      79.5%
+  grid                   61.6%        70.2%      71.4%
+  leather                89.1%        90.5%      88.6%
+  tile                   92.9%        95.2%      95.2%
+  wood                   84.9%        95.1%      97.1%
+  bottle                 80.6%        83.8%      87.5%
+  cable                  93.3%        93.3%      93.0%
+  capsule                78.9%        75.5%      77.4%
+  hazelnut               84.0%        86.9%      88.6%
+  metal_nut              89.2%        96.0%      96.0%
+  pill                   80.7%        82.7%      85.2%
+  screw                  93.7%        95.0%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.6%        88.5%      90.2%
+
+Saved: umdc_results.json

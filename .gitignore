@@ -169,3 +169,8 @@ buffer/
 checkpoints/
 picture/
 save/
+results/
+picture/
+multiq_ensemble/
+mega_ensemble/
+het_ensemble/

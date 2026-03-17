@@ -1,0 +1,52 @@
+{
+  "top1": {
+    "unified": {
+      "mean": 84.1,
+      "std": 0.89
+    },
+    "category_aware": {
+      "mean": 84.1,
+      "std": 0.89
+    }
+  },
+  "top3": {
+    "unified": {
+      "mean": 97.64,
+      "std": 0.37
+    },
+    "category_aware": {
+      "mean": 97.67,
+      "std": 0.39
+    }
+  },
+  "top5": {
+    "unified": {
+      "mean": 99.79,
+      "std": 0.07
+    },
+    "category_aware": {
+      "mean": 99.82,
+      "std": 0.06
+    }
+  },
+  "top10": {
+    "unified": {
+      "mean": 100.0,
+      "std": 0.0
+    },
+    "category_aware": {
+      "mean": 100.0,
+      "std": 0.0
+    }
+  },
+  "top20": {
+    "unified": {
+      "mean": 100.0,
+      "std": 0.0
+    },
+    "category_aware": {
+      "mean": 100.0,
+      "std": 0.0
+    }
+  }
+}

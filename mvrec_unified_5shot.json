@@ -1,0 +1,70 @@
+{
+  "k_shot": 5,
+  "num_sampling": 10,
+  "baseline": {
+    "mean": 84.1,
+    "std": 0.89
+  },
+  "finetuned": {
+    "mean": 86.78,
+    "std": 0.73
+  },
+  "per_category": {
+    "carpet": {
+      "baseline": 78.6,
+      "finetuned": 81.1
+    },
+    "grid": {
+      "baseline": 58.6,
+      "finetuned": 65.5
+    },
+    "leather": {
+      "baseline": 89.5,
+      "finetuned": 90.5
+    },
+    "tile": {
+      "baseline": 93.1,
+      "finetuned": 95.2
+    },
+    "wood": {
+      "baseline": 84.9,
+      "finetuned": 89.3
+    },
+    "bottle": {
+      "baseline": 80.0,
+      "finetuned": 84.4
+    },
+    "cable": {
+      "baseline": 90.5,
+      "finetuned": 93.0
+    },
+    "capsule": {
+      "baseline": 77.2,
+      "finetuned": 77.4
+    },
+    "hazelnut": {
+      "baseline": 83.4,
+      "finetuned": 87.1
+    },
+    "metal_nut": {
+      "baseline": 87.0,
+      "finetuned": 91.4
+    },
+    "pill": {
+      "baseline": 80.5,
+      "finetuned": 83.2
+    },
+    "screw": {
+      "baseline": 93.5,
+      "finetuned": 94.5
+    },
+    "transistor": {
+      "baseline": 100.0,
+      "finetuned": 100.0
+    },
+    "zipper": {
+      "baseline": 86.8,
+      "finetuned": 88.3
+    }
+  }
+}

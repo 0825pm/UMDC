@@ -1,0 +1,88 @@
+{
+  "k_shot": 1,
+  "num_sampling": 10,
+  "baseline": {
+    "mean": 70.68,
+    "std": 1.36
+  },
+  "finetuned": {
+    "mean": 71.58,
+    "std": 1.71
+  },
+  "per_category_ft": {
+    "mean": 71.83,
+    "std": 1.47
+  },
+  "per_category": {
+    "carpet": {
+      "baseline": 68.2,
+      "finetuned": 72.5,
+      "per_category_ft": 72.0
+    },
+    "grid": {
+      "baseline": 42.4,
+      "finetuned": 44.9,
+      "per_category_ft": 43.5
+    },
+    "leather": {
+      "baseline": 80.2,
+      "finetuned": 81.1,
+      "per_category_ft": 82.3
+    },
+    "tile": {
+      "baseline": 93.6,
+      "finetuned": 93.3,
+      "per_category_ft": 94.3
+    },
+    "wood": {
+      "baseline": 65.3,
+      "finetuned": 65.0,
+      "per_category_ft": 66.3
+    },
+    "bottle": {
+      "baseline": 63.4,
+      "finetuned": 66.6,
+      "per_category_ft": 63.7
+    },
+    "cable": {
+      "baseline": 76.7,
+      "finetuned": 76.1,
+      "per_category_ft": 77.5
+    },
+    "capsule": {
+      "baseline": 50.4,
+      "finetuned": 49.8,
+      "per_category_ft": 49.6
+    },
+    "hazelnut": {
+      "baseline": 70.3,
+      "finetuned": 72.6,
+      "per_category_ft": 72.0
+    },
+    "metal_nut": {
+      "baseline": 76.2,
+      "finetuned": 78.4,
+      "per_category_ft": 77.8
+    },
+    "pill": {
+      "baseline": 70.2,
+      "finetuned": 70.6,
+      "per_category_ft": 71.1
+    },
+    "screw": {
+      "baseline": 81.7,
+      "finetuned": 80.8,
+      "per_category_ft": 81.7
+    },
+    "transistor": {
+      "baseline": 87.6,
+      "finetuned": 86.2,
+      "per_category_ft": 86.7
+    },
+    "zipper": {
+      "baseline": 73.3,
+      "finetuned": 75.1,
+      "per_category_ft": 75.9
+    }
+  }
+}

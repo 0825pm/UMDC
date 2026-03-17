@@ -1,0 +1,58 @@
+{
+  "bottle": {
+    "0shot": 56.7,
+    "1shot": 60.0
+  },
+  "cable": {
+    "0shot": 23.6,
+    "1shot": 56.4
+  },
+  "capsule": {
+    "0shot": 28.0,
+    "1shot": 60.0
+  },
+  "carpet": {
+    "0shot": 54.5,
+    "1shot": 68.2
+  },
+  "grid": {
+    "0shot": 48.6,
+    "1shot": 40.0
+  },
+  "hazelnut": {
+    "0shot": 74.3,
+    "1shot": 82.9
+  },
+  "leather": {
+    "0shot": 34.1,
+    "1shot": 56.8
+  },
+  "metal_nut": {
+    "0shot": 32.5,
+    "1shot": 77.5
+  },
+  "pill": {
+    "0shot": 18.5,
+    "1shot": 42.6
+  },
+  "screw": {
+    "0shot": 24.0,
+    "1shot": 44.0
+  },
+  "tile": {
+    "0shot": 52.4,
+    "1shot": 95.2
+  },
+  "transistor": {
+    "0shot": 38.1,
+    "1shot": 81.0
+  },
+  "wood": {
+    "0shot": 50.0,
+    "1shot": 84.2
+  },
+  "zipper": {
+    "0shot": 20.0,
+    "1shot": 51.7
+  }
+}

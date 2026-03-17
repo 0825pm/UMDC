@@ -1,0 +1,2370 @@
+============================================================
+ CLEAN ABLATION: 5-shot, 10-sampling
+ Base = Tip-Adapter-F only (MVREC unified)
+============================================================
+
+========================================
+ [1] Base + APE-640 only
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ APE Feature Selection: top-640 channels
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.215 acc=94.1% lr=0.009990
+  [FT] ep=1: loss=0.150 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.114 acc=98.8% lr=0.009912
+  [FT] ep=10: loss=0.039 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.022 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.018 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.017 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.017 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.1% (Δ=+0.7%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.208 acc=95.9% lr=0.009990
+  [FT] ep=1: loss=0.146 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.110 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.036 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.020 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.016 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.015 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.015 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.2% (Δ=+3.6%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.201 acc=93.5% lr=0.009990
+  [FT] ep=1: loss=0.143 acc=98.2% lr=0.009961
+  [FT] ep=2: loss=0.110 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.035 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.020 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.017 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.016 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.016 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.7% (Δ=+2.4%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.198 acc=95.0% lr=0.009990
+  [FT] ep=1: loss=0.137 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.106 acc=99.1% lr=0.009912
+  [FT] ep=10: loss=0.035 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.020 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.016 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.015 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.015 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.3%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.192 acc=96.2% lr=0.009990
+  [FT] ep=1: loss=0.141 acc=98.5% lr=0.009961
+  [FT] ep=2: loss=0.111 acc=99.1% lr=0.009912
+  [FT] ep=10: loss=0.037 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.021 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.017 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.016 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.016 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.1% (Δ=+0.4%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.207 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=0.144 acc=97.1% lr=0.009961
+  [FT] ep=2: loss=0.107 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.035 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.020 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.016 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.015 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.015 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.4% (Δ=+3.7%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.202 acc=96.2% lr=0.009990
+  [FT] ep=1: loss=0.146 acc=97.9% lr=0.009961
+  [FT] ep=2: loss=0.113 acc=99.1% lr=0.009912
+  [FT] ep=10: loss=0.038 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.021 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.018 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.017 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.017 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 84.9% (Δ=+2.8%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.220 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=0.156 acc=97.1% lr=0.009961
+  [FT] ep=2: loss=0.119 acc=98.8% lr=0.009912
+  [FT] ep=10: loss=0.042 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.024 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.020 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.018 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.018 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.0% (Δ=+2.5%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.213 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.150 acc=97.9% lr=0.009961
+  [FT] ep=2: loss=0.114 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.039 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.022 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.018 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.017 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.017 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.5% (Δ=+2.6%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [FT] ep=0: loss=0.204 acc=94.1% lr=0.009990
+  [FT] ep=1: loss=0.147 acc=97.9% lr=0.009961
+  [FT] ep=2: loss=0.113 acc=98.8% lr=0.009912
+  [FT] ep=10: loss=0.038 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.021 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.018 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.017 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.016 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.1% (Δ=+3.7%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     88.9%
+  [Weighted by Acc] 88.8%
+  [Softmax w, τ=0.01] 89.4%  (top_w=0.264)
+  [Softmax w, τ=0.05] 88.9%  (top_w=0.132)
+  [Softmax w, τ=0.1] 88.9%  (top_w=0.116)
+  [Top-2 Ensemble] 88.3%  (models: ['88.2%', '88.1%'])
+  [Top-3 Ensemble] 89.2%  (models: ['88.2%', '88.1%', '87.9%'])
+  [Top-4 Ensemble] 89.3%  (models: ['88.2%', '88.1%', '87.9%', '87.4%'])
+  [Top-5 Ensemble] 89.3%  (models: ['88.2%', '88.1%', '87.9%', '87.4%', '86.7%'])
+  [Top-6 Ensemble] 89.3%  (models: ['88.2%', '88.1%', '87.9%', '87.4%', '86.7%', '86.5%'])
+  [Top-7 Ensemble] 89.6%  (models: ['88.2%', '88.1%', '87.9%', '87.4%', '86.7%', '86.5%', '86.1%'])
+  [Top-8 Ensemble] 89.0%  (models: ['88.2%', '88.1%', '87.9%', '87.4%', '86.7%', '86.5%', '86.1%', '86.0%'])
+  [Top-9 Ensemble] 88.6%  (models: ['88.2%', '88.1%', '87.9%', '87.4%', '86.7%', '86.5%', '86.1%', '86.0%', '85.1%'])
+  [Inf Temp=0.5]    88.9%
+  [Inf Temp=0.8]    88.9%
+  [Inf Temp=1.0]    88.9%  ← baseline
+  [Inf Temp=1.5]    88.9%
+  [Inf Temp=2.0]    88.9%
+  [Inf Temp=3.0]    88.9%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 89.2%
+    NEW BEST: top4_u_t0.5 → 89.3%
+    NEW BEST: top7_u_t0.5 → 89.6%
+  ★ BEST ENSEMBLE: top7_u_t0.5 → 89.6%
+
+  ★★ FINAL BEST: top7_u_t0.5 → 89.6%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 86.7% ± 1.1%
+  Δ: +2.6%
+  Logit Ensemble (10x):   89.6%
+  Δ from avg FT: +2.9%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        76.6%      79.5%
+  grid                   58.6%        67.1%      73.5%
+  leather                89.5%        90.9%      90.9%
+  tile                   93.1%        95.7%      95.2%
+  wood                   84.9%        90.0%      97.1%
+  bottle                 80.0%        83.4%      87.5%
+  cable                  90.5%        92.8%      94.7%
+  capsule                77.2%        76.4%      81.1%
+  hazelnut               83.4%        86.9%      88.6%
+  metal_nut              87.0%        91.4%      94.0%
+  pill                   80.5%        83.3%      87.7%
+  screw                  93.5%        94.2%      95.0%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        89.1%      90.2%
+
+Saved: umdc_results.json
+
+========================================
+ [2] Base + DistCalib-3 only
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ Distribution Calibration: 3 hallucinated/class (scale=0.5, weight=1.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.340 acc=96.3% lr=0.009990
+  [FT] ep=1: loss=0.284 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.241 acc=98.7% lr=0.009912
+  [FT] ep=10: loss=0.091 acc=99.6% lr=0.008864
+  [FT] ep=20: loss=0.051 acc=99.8% lr=0.006281
+  [FT] ep=30: loss=0.041 acc=99.8% lr=0.003228
+  [FT] ep=40: loss=0.038 acc=99.8% lr=0.000871
+  [FT] ep=49: loss=0.038 acc=99.8% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.1% (Δ=+1.7%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.343 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=0.285 acc=98.5% lr=0.009961
+  [FT] ep=2: loss=0.240 acc=98.9% lr=0.009912
+  [FT] ep=10: loss=0.088 acc=99.8% lr=0.008864
+  [FT] ep=20: loss=0.048 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.039 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.036 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.036 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.4% (Δ=+2.8%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.339 acc=96.0% lr=0.009990
+  [FT] ep=1: loss=0.284 acc=98.2% lr=0.009961
+  [FT] ep=2: loss=0.241 acc=98.5% lr=0.009912
+  [FT] ep=10: loss=0.090 acc=99.8% lr=0.008864
+  [FT] ep=20: loss=0.049 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.040 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.037 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.037 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+2.6%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.340 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=0.283 acc=98.2% lr=0.009961
+  [FT] ep=2: loss=0.239 acc=98.7% lr=0.009912
+  [FT] ep=10: loss=0.089 acc=99.8% lr=0.008864
+  [FT] ep=20: loss=0.049 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.039 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.036 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.036 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.5% (Δ=+2.9%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.334 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=0.279 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=0.237 acc=98.9% lr=0.009912
+  [FT] ep=10: loss=0.089 acc=99.6% lr=0.008864
+  [FT] ep=20: loss=0.050 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.040 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.037 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.037 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+1.3%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.331 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=0.274 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.231 acc=98.3% lr=0.009912
+  [FT] ep=10: loss=0.085 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.047 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.038 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.035 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.035 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.4% (Δ=+2.8%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.331 acc=97.4% lr=0.009990
+  [FT] ep=1: loss=0.277 acc=98.2% lr=0.009961
+  [FT] ep=2: loss=0.235 acc=98.7% lr=0.009912
+  [FT] ep=10: loss=0.090 acc=99.8% lr=0.008864
+  [FT] ep=20: loss=0.050 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.040 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.038 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.037 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.0% (Δ=+2.9%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.348 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=0.291 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.247 acc=98.3% lr=0.009912
+  [FT] ep=10: loss=0.095 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.053 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.042 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.040 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.039 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.7% (Δ=+2.2%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.333 acc=95.8% lr=0.009990
+  [FT] ep=1: loss=0.277 acc=97.6% lr=0.009961
+  [FT] ep=2: loss=0.235 acc=98.7% lr=0.009912
+  [FT] ep=10: loss=0.091 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.050 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.040 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.038 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.037 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+3.1%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.337 acc=96.7% lr=0.009990
+  [FT] ep=1: loss=0.282 acc=98.3% lr=0.009961
+  [FT] ep=2: loss=0.239 acc=98.7% lr=0.009912
+  [FT] ep=10: loss=0.091 acc=99.8% lr=0.008864
+  [FT] ep=20: loss=0.050 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.040 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.038 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.037 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+2.6%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     88.6%
+  [Weighted by Acc] 88.6%
+  [Softmax w, τ=0.01] 88.8%  (top_w=0.200)
+  [Softmax w, τ=0.05] 88.6%  (top_w=0.119)
+  [Softmax w, τ=0.1] 88.8%  (top_w=0.109)
+  [Top-2 Ensemble] 88.6%  (models: ['87.5%', '87.4%'])
+  [Top-3 Ensemble] 89.2%  (models: ['87.5%', '87.4%', '86.9%'])
+  [Top-4 Ensemble] 88.5%  (models: ['87.5%', '87.4%', '86.9%', '86.9%'])
+  [Top-5 Ensemble] 88.9%  (models: ['87.5%', '87.4%', '86.9%', '86.9%', '86.9%'])
+  [Top-6 Ensemble] 88.8%  (models: ['87.5%', '87.4%', '86.9%', '86.9%', '86.9%', '86.9%'])
+  [Top-7 Ensemble] 89.2%  (models: ['87.5%', '87.4%', '86.9%', '86.9%', '86.9%', '86.9%', '86.4%'])
+  [Top-8 Ensemble] 88.8%  (models: ['87.5%', '87.4%', '86.9%', '86.9%', '86.9%', '86.9%', '86.4%', '86.1%'])
+  [Top-9 Ensemble] 88.5%  (models: ['87.5%', '87.4%', '86.9%', '86.9%', '86.9%', '86.9%', '86.4%', '86.1%', '85.7%'])
+  [Inf Temp=0.5]    88.6%
+  [Inf Temp=0.8]    88.6%
+  [Inf Temp=1.0]    88.6%  ← baseline
+  [Inf Temp=1.5]    88.6%
+  [Inf Temp=2.0]    88.6%
+  [Inf Temp=3.0]    88.6%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 89.2%
+  ★ BEST ENSEMBLE: top3_u_t0.5 → 89.2%
+
+  ★★ FINAL BEST: top3_u_t0.5 → 89.2%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 86.6% ± 0.7%
+  Δ: +2.5%
+  Logit Ensemble (10x):   89.2%
+  Δ from avg FT: +2.6%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        79.5%      84.1%
+  grid                   58.6%        65.9%      69.4%
+  leather                89.5%        90.9%      90.9%
+  tile                   93.1%        95.5%      97.6%
+  wood                   84.9%        89.6%      95.7%
+  bottle                 80.0%        84.1%      90.6%
+  cable                  90.5%        92.6%      91.2%
+  capsule                77.2%        76.4%      79.2%
+  hazelnut               83.4%        87.1%      88.6%
+  metal_nut              87.0%        91.2%      94.0%
+  pill                   80.5%        83.0%      86.4%
+  screw                  93.5%        94.3%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        88.0%      89.0%
+
+Saved: umdc_results.json
+
+========================================
+ [3] Base + CCSA only
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Logit Ensemble: ON (average across samplings)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.754 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=0.689 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.635 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.404 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.325 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.302 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.295 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.293 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.5% (Δ=+3.1%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.772 acc=94.7% lr=0.009990
+  [FT] ep=1: loss=0.705 acc=95.9% lr=0.009961
+  [FT] ep=2: loss=0.648 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.407 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.325 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.302 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.294 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.293 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.762 acc=93.5% lr=0.009990
+  [FT] ep=1: loss=0.697 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.641 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.407 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.326 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.303 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.295 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.294 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.1% (Δ=+2.8%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.764 acc=94.4% lr=0.009990
+  [FT] ep=1: loss=0.697 acc=96.8% lr=0.009961
+  [FT] ep=2: loss=0.641 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=0.405 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.324 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.301 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.293 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.292 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.6% (Δ=+3.1%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.758 acc=95.6% lr=0.009990
+  [FT] ep=1: loss=0.693 acc=97.1% lr=0.009961
+  [FT] ep=2: loss=0.637 acc=97.9% lr=0.009912
+  [FT] ep=10: loss=0.406 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.326 acc=99.4% lr=0.006281
+  [FT] ep=30: loss=0.302 acc=99.4% lr=0.003228
+  [FT] ep=40: loss=0.295 acc=99.4% lr=0.000871
+  [FT] ep=49: loss=0.294 acc=99.4% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+1.3%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.750 acc=93.5% lr=0.009990
+  [FT] ep=1: loss=0.684 acc=95.0% lr=0.009961
+  [FT] ep=2: loss=0.628 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.396 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.317 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.295 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.288 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.286 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.5% (Δ=+3.9%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.739 acc=95.6% lr=0.009990
+  [FT] ep=1: loss=0.675 acc=96.5% lr=0.009961
+  [FT] ep=2: loss=0.621 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.396 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.318 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.295 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.288 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.287 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.7% (Δ=+3.6%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.770 acc=92.6% lr=0.009990
+  [FT] ep=1: loss=0.704 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.648 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.411 acc=98.8% lr=0.008864
+  [FT] ep=20: loss=0.330 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.307 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.299 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.298 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.4% (Δ=+2.9%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.752 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.687 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.631 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.403 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.323 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.300 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.293 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.292 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.5% (Δ=+3.6%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.760 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=0.694 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=0.638 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.406 acc=98.8% lr=0.008864
+  [FT] ep=20: loss=0.325 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.302 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.295 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.294 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+4.0%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     88.6%
+  [Weighted by Acc] 88.6%
+  [Softmax w, τ=0.01] 88.9%  (top_w=0.220)
+  [Softmax w, τ=0.05] 88.9%  (top_w=0.122)
+  [Softmax w, τ=0.1] 88.6%  (top_w=0.111)
+  [Top-2 Ensemble] 88.1%  (models: ['88.3%', '88.3%'])
+  [Top-3 Ensemble] 89.6%  (models: ['88.3%', '88.3%', '87.6%'])
+  [Top-4 Ensemble] 89.2%  (models: ['88.3%', '88.3%', '87.6%', '87.5%'])
+  [Top-5 Ensemble] 89.2%  (models: ['88.3%', '88.3%', '87.6%', '87.5%', '87.5%'])
+  [Top-6 Ensemble] 89.3%  (models: ['88.3%', '88.3%', '87.6%', '87.5%', '87.5%', '87.5%'])
+  [Top-7 Ensemble] 89.2%  (models: ['88.3%', '88.3%', '87.6%', '87.5%', '87.5%', '87.5%', '87.1%'])
+  [Top-8 Ensemble] 88.9%  (models: ['88.3%', '88.3%', '87.6%', '87.5%', '87.5%', '87.5%', '87.1%', '86.9%'])
+  [Top-9 Ensemble] 88.8%  (models: ['88.3%', '88.3%', '87.6%', '87.5%', '87.5%', '87.5%', '87.1%', '86.9%', '86.4%'])
+  [Inf Temp=0.5]    88.6%
+  [Inf Temp=0.8]    88.6%
+  [Inf Temp=1.0]    88.6%  ← baseline
+  [Inf Temp=1.5]    88.6%
+  [Inf Temp=2.0]    88.6%
+  [Inf Temp=3.0]    88.6%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 89.6%
+  ★ BEST ENSEMBLE: top3_u_t0.5 → 89.6%
+
+  ★★ FINAL BEST: top3_u_t0.5 → 89.6%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 87.3% ± 0.8%
+  Δ: +3.2%
+  Logit Ensemble (10x):   89.6%
+  Δ from avg FT: +2.3%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        83.0%      84.1%
+  grid                   58.6%        64.7%      77.6%
+  leather                89.5%        90.5%      88.6%
+  tile                   93.1%        93.1%      95.2%
+  wood                   84.9%        93.0%      95.7%
+  bottle                 80.0%        85.0%      84.4%
+  cable                  90.5%        93.9%      93.0%
+  capsule                77.2%        78.5%      81.1%
+  hazelnut               83.4%        86.6%      91.4%
+  metal_nut              87.0%        91.0%      92.0%
+  pill                   80.5%        83.1%      86.4%
+  screw                  93.5%        94.3%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        89.4%      90.2%
+
+Saved: umdc_results.json
+
+========================================
+ [4] Base + Text only
+========================================
+/home/vscode/minkh/src/UMDC/run_umdc.py:919: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Text Features: ON (γ=2.0)
+  ★ Logit Ensemble: ON (average across samplings)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [FT] ep=0: loss=0.648 acc=91.5% lr=0.009990
+  [FT] ep=1: loss=0.583 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=0.528 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.287 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.193 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.165 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.157 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.156 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.5% (Δ=+2.1%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [FT] ep=0: loss=0.665 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.597 acc=95.0% lr=0.009961
+  [FT] ep=2: loss=0.539 acc=97.1% lr=0.009912
+  [FT] ep=10: loss=0.289 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.192 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.164 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.155 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.154 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.1% (Δ=+3.5%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [FT] ep=0: loss=0.651 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=0.586 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.530 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.287 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.193 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.165 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.157 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.156 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.5% (Δ=+2.2%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [FT] ep=0: loss=0.660 acc=91.8% lr=0.009990
+  [FT] ep=1: loss=0.592 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=0.535 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=0.288 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.192 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.164 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.156 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.154 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+2.4%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [FT] ep=0: loss=0.646 acc=95.3% lr=0.009990
+  [FT] ep=1: loss=0.581 acc=97.1% lr=0.009961
+  [FT] ep=2: loss=0.525 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.285 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.192 acc=99.4% lr=0.006281
+  [FT] ep=30: loss=0.164 acc=99.4% lr=0.003228
+  [FT] ep=40: loss=0.156 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.155 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+1.3%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [FT] ep=0: loss=0.640 acc=92.1% lr=0.009990
+  [FT] ep=1: loss=0.574 acc=94.7% lr=0.009961
+  [FT] ep=2: loss=0.518 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=0.277 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.185 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.158 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.150 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.148 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.9% (Δ=+3.3%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [FT] ep=0: loss=0.630 acc=94.1% lr=0.009990
+  [FT] ep=1: loss=0.567 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=0.512 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=0.279 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.188 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.161 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.153 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.152 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.8% (Δ=+3.7%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [FT] ep=0: loss=0.662 acc=91.8% lr=0.009990
+  [FT] ep=1: loss=0.595 acc=93.8% lr=0.009961
+  [FT] ep=2: loss=0.539 acc=95.9% lr=0.009912
+  [FT] ep=10: loss=0.295 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.199 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.170 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.162 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.161 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.5% (Δ=+3.1%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [FT] ep=0: loss=0.645 acc=92.4% lr=0.009990
+  [FT] ep=1: loss=0.579 acc=94.7% lr=0.009961
+  [FT] ep=2: loss=0.524 acc=96.2% lr=0.009912
+  [FT] ep=10: loss=0.287 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.193 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.165 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.157 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.156 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.6% (Δ=+3.7%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [FT] ep=0: loss=0.652 acc=92.6% lr=0.009990
+  [FT] ep=1: loss=0.585 acc=94.7% lr=0.009961
+  [FT] ep=2: loss=0.529 acc=96.2% lr=0.009912
+  [FT] ep=10: loss=0.288 acc=98.8% lr=0.008864
+  [FT] ep=20: loss=0.194 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.166 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.158 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.156 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.8% (Δ=+3.5%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     88.9%
+  [Weighted by Acc] 88.9%
+  [Softmax w, τ=0.01] 89.4%  (top_w=0.240)
+  [Softmax w, τ=0.05] 88.9%  (top_w=0.123)
+  [Softmax w, τ=0.1] 88.9%  (top_w=0.111)
+  [Top-2 Ensemble] 88.5%  (models: ['88.1%', '87.8%'])
+  [Top-3 Ensemble] 88.8%  (models: ['88.1%', '87.8%', '87.6%'])
+  [Top-4 Ensemble] 88.1%  (models: ['88.1%', '87.8%', '87.6%', '86.9%'])
+  [Top-5 Ensemble] 89.0%  (models: ['88.1%', '87.8%', '87.6%', '86.9%', '86.9%'])
+  [Top-6 Ensemble] 89.0%  (models: ['88.1%', '87.8%', '87.6%', '86.9%', '86.9%', '86.9%'])
+  [Top-7 Ensemble] 89.3%  (models: ['88.1%', '87.8%', '87.6%', '86.9%', '86.9%', '86.9%', '86.5%'])
+  [Top-8 Ensemble] 88.8%  (models: ['88.1%', '87.8%', '87.6%', '86.9%', '86.9%', '86.9%', '86.5%', '86.5%'])
+  [Top-9 Ensemble] 88.8%  (models: ['88.1%', '87.8%', '87.6%', '86.9%', '86.9%', '86.9%', '86.5%', '86.5%', '86.5%'])
+  [Inf Temp=0.5]    88.9%
+  [Inf Temp=0.8]    88.9%
+  [Inf Temp=1.0]    88.9%  ← baseline
+  [Inf Temp=1.5]    88.9%
+  [Inf Temp=2.0]    88.9%
+  [Inf Temp=3.0]    88.9%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 88.8%
+    NEW BEST: top5_u_t0.5 → 89.0%
+    NEW BEST: top5_w_t0.5 → 89.2%
+    NEW BEST: top7_u_t0.5 → 89.3%
+  ★ BEST ENSEMBLE: top7_u_t0.5 → 89.3%
+
+  ★★ FINAL BEST: top7_u_t0.5 → 89.3%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 87.0% ± 0.6%
+  Δ: +2.9%
+  Logit Ensemble (10x):   89.3%
+  Δ from avg FT: +2.3%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        80.7%      81.8%
+  grid                   58.6%        66.5%      73.5%
+  leather                89.5%        90.5%      90.9%
+  tile                   93.1%        94.0%      95.2%
+  wood                   84.9%        91.4%      97.1%
+  bottle                 80.0%        85.0%      87.5%
+  cable                  90.5%        93.0%      93.0%
+  capsule                77.2%        77.7%      79.2%
+  hazelnut               83.4%        87.1%      88.6%
+  metal_nut              87.0%        91.6%      96.0%
+  pill                   80.5%        82.5%      85.2%
+  screw                  93.5%        94.5%      95.0%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        88.5%      90.2%
+
+Saved: umdc_results.json
+
+========================================
+ [5] Base + Label Smoothing only
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Label Smoothing: 0.1
+  ★ Logit Ensemble: ON (average across samplings)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [FT] ep=0: loss=1.364 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=1.309 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=1.261 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=1.042 acc=99.1% lr=0.008864
+  [FT] ep=20: loss=0.939 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.906 acc=99.7% lr=0.003228
+  [FT] ep=40: loss=0.896 acc=99.7% lr=0.000871
+  [FT] ep=49: loss=0.894 acc=99.7% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.7% (Δ=+2.2%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [FT] ep=0: loss=1.373 acc=94.7% lr=0.009990
+  [FT] ep=1: loss=1.315 acc=95.9% lr=0.009961
+  [FT] ep=2: loss=1.265 acc=97.6% lr=0.009912
+  [FT] ep=10: loss=1.040 acc=99.7% lr=0.008864
+  [FT] ep=20: loss=0.936 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.903 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.893 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.891 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.8% (Δ=+3.2%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [FT] ep=0: loss=1.364 acc=93.5% lr=0.009990
+  [FT] ep=1: loss=1.308 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=1.260 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=1.040 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.938 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.905 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.895 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.894 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.2% (Δ=+2.9%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [FT] ep=0: loss=1.369 acc=94.4% lr=0.009990
+  [FT] ep=1: loss=1.311 acc=96.8% lr=0.009961
+  [FT] ep=2: loss=1.262 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=1.041 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.937 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.903 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.893 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.892 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.4% (Δ=+2.8%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [FT] ep=0: loss=1.359 acc=95.6% lr=0.009990
+  [FT] ep=1: loss=1.302 acc=97.4% lr=0.009961
+  [FT] ep=2: loss=1.254 acc=97.9% lr=0.009912
+  [FT] ep=10: loss=1.038 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.937 acc=99.4% lr=0.006281
+  [FT] ep=30: loss=0.904 acc=99.4% lr=0.003228
+  [FT] ep=40: loss=0.894 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.892 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.9% (Δ=+1.3%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [FT] ep=0: loss=1.356 acc=93.5% lr=0.009990
+  [FT] ep=1: loss=1.299 acc=95.0% lr=0.009961
+  [FT] ep=2: loss=1.251 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=1.034 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.932 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.899 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.889 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.887 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.2% (Δ=+3.6%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [FT] ep=0: loss=1.356 acc=95.6% lr=0.009990
+  [FT] ep=1: loss=1.300 acc=96.5% lr=0.009961
+  [FT] ep=2: loss=1.253 acc=97.4% lr=0.009912
+  [FT] ep=10: loss=1.040 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.938 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.905 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.895 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.893 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 85.7% (Δ=+3.6%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [FT] ep=0: loss=1.375 acc=92.6% lr=0.009990
+  [FT] ep=1: loss=1.317 acc=95.6% lr=0.009961
+  [FT] ep=2: loss=1.269 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=1.049 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.945 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.910 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.900 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.898 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.7% (Δ=+3.2%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [FT] ep=0: loss=1.353 acc=92.9% lr=0.009990
+  [FT] ep=1: loss=1.297 acc=95.3% lr=0.009961
+  [FT] ep=2: loss=1.250 acc=96.5% lr=0.009912
+  [FT] ep=10: loss=1.038 acc=99.4% lr=0.008864
+  [FT] ep=20: loss=0.938 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.905 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.895 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.893 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 88.1% (Δ=+4.2%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [FT] ep=0: loss=1.360 acc=93.8% lr=0.009990
+  [FT] ep=1: loss=1.302 acc=94.1% lr=0.009961
+  [FT] ep=2: loss=1.254 acc=96.8% lr=0.009912
+  [FT] ep=10: loss=1.038 acc=98.8% lr=0.008864
+  [FT] ep=20: loss=0.938 acc=99.7% lr=0.006281
+  [FT] ep=30: loss=0.905 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.895 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.893 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 88.2% (Δ=+3.9%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     89.4%
+  [Weighted by Acc] 89.4%
+  [Softmax w, τ=0.01] 89.6%  (top_w=0.221)
+  [Softmax w, τ=0.05] 89.3%  (top_w=0.121)
+  [Softmax w, τ=0.1] 89.4%  (top_w=0.110)
+  [Top-2 Ensemble] 88.8%  (models: ['88.2%', '88.1%'])
+  [Top-3 Ensemble] 88.8%  (models: ['88.2%', '88.1%', '87.8%'])
+  [Top-4 Ensemble] 89.6%  (models: ['88.2%', '88.1%', '87.8%', '87.4%'])
+  [Top-5 Ensemble] 89.7%  (models: ['88.2%', '88.1%', '87.8%', '87.4%', '87.2%'])
+  [Top-6 Ensemble] 90.0%  (models: ['88.2%', '88.1%', '87.8%', '87.4%', '87.2%', '87.2%'])
+  [Top-7 Ensemble] 89.6%  (models: ['88.2%', '88.1%', '87.8%', '87.4%', '87.2%', '87.2%', '86.9%'])
+  [Top-8 Ensemble] 89.0%  (models: ['88.2%', '88.1%', '87.8%', '87.4%', '87.2%', '87.2%', '86.9%', '86.7%'])
+  [Top-9 Ensemble] 89.0%  (models: ['88.2%', '88.1%', '87.8%', '87.4%', '87.2%', '87.2%', '86.9%', '86.7%', '86.7%'])
+  [Inf Temp=0.5]    89.4%
+  [Inf Temp=0.8]    89.4%
+  [Inf Temp=1.0]    89.4%  ← baseline
+  [Inf Temp=1.5]    89.4%
+  [Inf Temp=2.0]    89.4%
+  [Inf Temp=3.0]    89.4%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 88.8%
+    NEW BEST: top4_u_t0.5 → 89.6%
+    NEW BEST: top5_u_t0.5 → 89.7%
+    NEW BEST: top6_u_t0.5 → 90.0%
+  ★ BEST ENSEMBLE: top6_u_t0.5 → 90.0%
+
+  ★★ FINAL BEST: top6_u_t0.5 → 90.0%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 87.2% ± 0.7%
+  Δ: +3.1%
+  Logit Ensemble (10x):   90.0%
+  Δ from avg FT: +2.8%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        81.4%      84.1%
+  grid                   58.6%        66.5%      73.5%
+  leather                89.5%        90.9%      90.9%
+  tile                   93.1%        96.2%      97.6%
+  wood                   84.9%        91.0%      97.1%
+  bottle                 80.0%        85.3%      87.5%
+  cable                  90.5%        92.8%      93.0%
+  capsule                77.2%        78.3%      81.1%
+  hazelnut               83.4%        86.9%      88.6%
+  metal_nut              87.0%        91.6%      96.0%
+  pill                   80.5%        83.1%      86.4%
+  screw                  93.5%        94.7%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        88.0%      90.2%
+
+Saved: umdc_results.json
+
+========================================
+ [6] Base + APE-640 + DC-3 (NO CCSA/Text/LS)
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ APE Feature Selection: top-640 channels
+  ★ Distribution Calibration: 3 hallucinated/class (scale=0.5, weight=1.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.106 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=0.057 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.036 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.009 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.004 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.003 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.003 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.1% (Δ=+0.7%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.103 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=0.055 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.034 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.095 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=0.052 acc=99.3% lr=0.009961
+  [FT] ep=2: loss=0.032 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.006 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.4% (Δ=+2.1%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.092 acc=97.4% lr=0.009990
+  [FT] ep=1: loss=0.047 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.031 acc=100.0% lr=0.009912
+  [FT] ep=10: loss=0.007 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.3%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.088 acc=98.3% lr=0.009990
+  [FT] ep=1: loss=0.052 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=0.035 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.3% (Δ=-0.4%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.104 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=0.055 acc=98.3% lr=0.009961
+  [FT] ep=2: loss=0.032 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.007 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.4% (Δ=+3.7%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.099 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=0.058 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=0.037 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 83.3% (Δ=+1.3%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.111 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=0.061 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=0.039 acc=99.1% lr=0.009912
+  [FT] ep=10: loss=0.009 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.004 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.003 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.003 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.8% (Δ=+2.4%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.108 acc=96.1% lr=0.009990
+  [FT] ep=1: loss=0.059 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.037 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.8% (Δ=+1.9%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.096 acc=96.7% lr=0.009990
+  [FT] ep=1: loss=0.055 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=0.035 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.1% (Δ=+2.8%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     89.2%
+  [Weighted by Acc] 89.2%
+  [Softmax w, τ=0.01] 89.6%  (top_w=0.367)
+  [Softmax w, τ=0.05] 88.8%  (top_w=0.146)
+  [Softmax w, τ=0.1] 89.0%  (top_w=0.122)
+  [Top-2 Ensemble] 88.9%  (models: ['88.3%', '87.9%'])
+  [Top-3 Ensemble] 90.1%  (models: ['88.3%', '87.9%', '87.4%'])
+  [Top-4 Ensemble] 88.9%  (models: ['88.3%', '87.9%', '87.4%', '87.1%'])
+  [Top-5 Ensemble] 89.6%  (models: ['88.3%', '87.9%', '87.4%', '87.1%', '86.4%'])
+  [Top-6 Ensemble] 89.2%  (models: ['88.3%', '87.9%', '87.4%', '87.1%', '86.4%', '85.8%'])
+  [Top-7 Ensemble] 88.8%  (models: ['88.3%', '87.9%', '87.4%', '87.1%', '86.4%', '85.8%', '85.8%'])
+  [Top-8 Ensemble] 88.8%  (models: ['88.3%', '87.9%', '87.4%', '87.1%', '86.4%', '85.8%', '85.8%', '85.3%'])
+  [Top-9 Ensemble] 88.5%  (models: ['88.3%', '87.9%', '87.4%', '87.1%', '86.4%', '85.8%', '85.8%', '85.3%', '85.1%'])
+  [Inf Temp=0.5]    89.2%
+  [Inf Temp=0.8]    89.2%
+  [Inf Temp=1.0]    89.2%  ← baseline
+  [Inf Temp=1.5]    89.2%
+  [Inf Temp=2.0]    89.2%
+  [Inf Temp=3.0]    89.2%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 90.1%
+  ★ BEST ENSEMBLE: top3_u_t0.5 → 90.1%
+
+  ★★ FINAL BEST: top3_u_t0.5 → 90.1%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 86.2% ± 1.4%
+  Δ: +2.2%
+  Logit Ensemble (10x):   90.1%
+  Δ from avg FT: +3.9%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        74.5%      79.5%
+  grid                   58.6%        65.7%      77.6%
+  leather                89.5%        90.9%      88.6%
+  tile                   93.1%        95.7%      95.2%
+  wood                   84.9%        90.4%      97.1%
+  bottle                 80.0%        82.2%      90.6%
+  cable                  90.5%        92.6%      94.7%
+  capsule                77.2%        76.0%      79.2%
+  hazelnut               83.4%        86.0%      91.4%
+  metal_nut              87.0%        92.0%      94.0%
+  pill                   80.5%        82.8%      87.7%
+  screw                  93.5%        94.0%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        88.4%      91.5%
+
+Saved: umdc_results.json
+
+========================================
+ [7] Base + APE + DC + CCSA
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ APE Feature Selection: top-640 channels
+  ★ Distribution Calibration: 3 hallucinated/class (scale=0.5, weight=1.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.325 acc=96.3% lr=0.009990
+  [FT] ep=1: loss=0.267 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=0.235 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.126 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.074 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.058 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.052 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.052 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.7% (Δ=+2.2%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.316 acc=97.2% lr=0.009990
+  [FT] ep=1: loss=0.261 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.230 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.122 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.071 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.055 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.050 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.050 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.3%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.308 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=0.257 acc=99.3% lr=0.009961
+  [FT] ep=2: loss=0.227 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.119 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.069 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.053 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.049 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.048 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.4% (Δ=+2.1%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.308 acc=97.4% lr=0.009990
+  [FT] ep=1: loss=0.255 acc=99.3% lr=0.009961
+  [FT] ep=2: loss=0.228 acc=100.0% lr=0.009912
+  [FT] ep=10: loss=0.122 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.070 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.054 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.050 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.049 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.2% (Δ=+1.7%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.302 acc=98.2% lr=0.009990
+  [FT] ep=1: loss=0.257 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=0.228 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.118 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.068 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.053 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.048 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.048 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.2% (Δ=+0.6%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.321 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=0.263 acc=98.3% lr=0.009961
+  [FT] ep=2: loss=0.228 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.122 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.072 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.056 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.051 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.050 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.1% (Δ=+3.5%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.320 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=0.269 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=0.237 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.122 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.069 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.053 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.048 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.047 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 84.9% (Δ=+2.8%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.323 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=0.266 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=0.233 acc=99.1% lr=0.009912
+  [FT] ep=10: loss=0.126 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.075 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.058 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.053 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.052 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.4% (Δ=+2.9%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.321 acc=96.3% lr=0.009990
+  [FT] ep=1: loss=0.264 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.231 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.122 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.071 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.055 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.050 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.049 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.1% (Δ=+3.2%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=0.311 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=0.259 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.228 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.118 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.068 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.053 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.048 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.048 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.1% (Δ=+3.7%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     88.6%
+  [Weighted by Acc] 88.8%
+  [Softmax w, τ=0.01] 88.6%  (top_w=0.276)
+  [Softmax w, τ=0.05] 88.8%  (top_w=0.129)
+  [Softmax w, τ=0.1] 88.8%  (top_w=0.114)
+  [Top-2 Ensemble] 88.5%  (models: ['88.1%', '87.9%'])
+  [Top-3 Ensemble] 88.9%  (models: ['88.1%', '87.9%', '87.1%'])
+  [Top-4 Ensemble] 88.6%  (models: ['88.1%', '87.9%', '87.1%', '87.1%'])
+  [Top-5 Ensemble] 89.0%  (models: ['88.1%', '87.9%', '87.1%', '87.1%', '86.7%'])
+  [Top-6 Ensemble] 88.6%  (models: ['88.1%', '87.9%', '87.1%', '87.1%', '86.7%', '86.4%'])
+  [Top-7 Ensemble] 89.0%  (models: ['88.1%', '87.9%', '87.1%', '87.1%', '86.7%', '86.4%', '86.4%'])
+  [Top-8 Ensemble] 89.2%  (models: ['88.1%', '87.9%', '87.1%', '87.1%', '86.7%', '86.4%', '86.4%', '86.2%'])
+  [Top-9 Ensemble] 88.8%  (models: ['88.1%', '87.9%', '87.1%', '87.1%', '86.7%', '86.4%', '86.4%', '86.2%', '86.2%'])
+  [Inf Temp=0.5]    88.6%
+  [Inf Temp=0.8]    88.6%
+  [Inf Temp=1.0]    88.6%  ← baseline
+  [Inf Temp=1.5]    88.6%
+  [Inf Temp=2.0]    88.6%
+  [Inf Temp=3.0]    88.6%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 88.9%
+    NEW BEST: top5_u_t0.5 → 89.0%
+    NEW BEST: top8_u_t0.5 → 89.2%
+  ★ BEST ENSEMBLE: top8_u_t0.5 → 89.2%
+
+  ★★ FINAL BEST: top8_u_t0.5 → 89.2%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 86.7% ± 0.9%
+  Δ: +2.6%
+  Logit Ensemble (10x):   89.2%
+  Δ from avg FT: +2.5%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        81.1%      81.8%
+  grid                   58.6%        61.6%      71.4%
+  leather                89.5%        89.1%      88.6%
+  tile                   93.1%        92.9%      95.2%
+  wood                   84.9%        94.9%      97.1%
+  bottle                 80.0%        81.9%      87.5%
+  cable                  90.5%        91.9%      93.0%
+  capsule                77.2%        75.8%      77.4%
+  hazelnut               83.4%        86.6%      88.6%
+  metal_nut              87.0%        93.0%      92.0%
+  pill                   80.5%        82.8%      87.7%
+  screw                  93.5%        94.5%      96.7%
+  transistor            100.0%        99.0%     100.0%
+  zipper                 86.8%        89.6%      91.5%
+
+Saved: umdc_results.json
+
+========================================
+ [8] Base + APE + DC + Text
+========================================
+/home/vscode/minkh/src/UMDC/run_umdc.py:919: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Text Features: ON (γ=2.0)
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ APE Feature Selection: top-640 channels
+  ★ Distribution Calibration: 3 hallucinated/class (scale=0.5, weight=1.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.115 acc=96.7% lr=0.009990
+  [FT] ep=1: loss=0.060 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.037 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.009 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.004 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.003 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.003 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.1% (Δ=+0.7%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.106 acc=97.2% lr=0.009990
+  [FT] ep=1: loss=0.055 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=0.033 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 88.3% (Δ=+3.7%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.095 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=0.053 acc=99.3% lr=0.009961
+  [FT] ep=2: loss=0.033 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.006 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.8% (Δ=+2.5%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.095 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=0.048 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.030 acc=100.0% lr=0.009912
+  [FT] ep=10: loss=0.007 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.5% (Δ=+2.9%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.089 acc=98.2% lr=0.009990
+  [FT] ep=1: loss=0.050 acc=99.4% lr=0.009961
+  [FT] ep=2: loss=0.033 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.007 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 85.7% (Δ=+0.0%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.101 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=0.050 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.029 acc=100.0% lr=0.009912
+  [FT] ep=10: loss=0.006 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 87.1% (Δ=+3.5%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.097 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=0.055 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=0.035 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.004 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 83.9% (Δ=+1.8%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.109 acc=96.0% lr=0.009990
+  [FT] ep=1: loss=0.059 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=0.037 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=0.009 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.004 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.003 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.003 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.5% (Δ=+3.1%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.109 acc=96.1% lr=0.009990
+  [FT] ep=1: loss=0.057 acc=98.5% lr=0.009961
+  [FT] ep=2: loss=0.035 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=0.008 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.003 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.2% (Δ=+2.4%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=0.097 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=0.053 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=0.033 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=0.007 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=0.003 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.002 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.002 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.002 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.0, noise=0.0
+  Fine-tuned: 86.8% (Δ=+2.5%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     88.9%
+  [Weighted by Acc] 88.9%
+  [Softmax w, τ=0.01] 89.4%  (top_w=0.389)
+  [Softmax w, τ=0.05] 89.2%  (top_w=0.143)
+  [Softmax w, τ=0.1] 89.3%  (top_w=0.120)
+  [Top-2 Ensemble] 89.6%  (models: ['88.3%', '87.5%'])
+  [Top-3 Ensemble] 90.1%  (models: ['88.3%', '87.5%', '87.1%'])
+  [Top-4 Ensemble] 89.3%  (models: ['88.3%', '87.5%', '87.1%', '86.8%'])
+  [Top-5 Ensemble] 89.7%  (models: ['88.3%', '87.5%', '87.1%', '86.8%', '86.8%'])
+  [Top-6 Ensemble] 89.4%  (models: ['88.3%', '87.5%', '87.1%', '86.8%', '86.8%', '86.5%'])
+  [Top-7 Ensemble] 89.0%  (models: ['88.3%', '87.5%', '87.1%', '86.8%', '86.8%', '86.5%', '86.2%'])
+  [Top-8 Ensemble] 88.6%  (models: ['88.3%', '87.5%', '87.1%', '86.8%', '86.8%', '86.5%', '86.2%', '85.7%'])
+  [Top-9 Ensemble] 88.8%  (models: ['88.3%', '87.5%', '87.1%', '86.8%', '86.8%', '86.5%', '86.2%', '85.7%', '85.1%'])
+  [Inf Temp=0.5]    88.9%
+  [Inf Temp=0.8]    88.9%
+  [Inf Temp=1.0]    88.9%  ← baseline
+  [Inf Temp=1.5]    88.9%
+  [Inf Temp=2.0]    88.9%
+  [Inf Temp=3.0]    88.9%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 90.1%
+  ★ BEST ENSEMBLE: top3_u_t0.5 → 90.1%
+
+  ★★ FINAL BEST: top3_u_t0.5 → 90.1%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 86.4% ± 1.2%
+  Δ: +2.3%
+  Logit Ensemble (10x):   90.1%
+  Δ from avg FT: +3.7%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        75.0%      79.5%
+  grid                   58.6%        65.5%      79.6%
+  leather                89.5%        90.9%      88.6%
+  tile                   93.1%        95.7%      95.2%
+  wood                   84.9%        91.3%      97.1%
+  bottle                 80.0%        84.4%      90.6%
+  cable                  90.5%        92.5%      94.7%
+  capsule                77.2%        75.5%      79.2%
+  hazelnut               83.4%        87.1%      91.4%
+  metal_nut              87.0%        91.6%      94.0%
+  pill                   80.5%        82.8%      87.7%
+  screw                  93.5%        94.0%      95.0%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        88.3%      91.5%
+
+Saved: umdc_results.json
+
+========================================
+ [9] Base + APE + DC + LS
+========================================
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ Label Smoothing: 0.1
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ APE Feature Selection: top-640 channels
+  ★ Distribution Calibration: 3 hallucinated/class (scale=0.5, weight=1.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.663 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=2.565 acc=98.5% lr=0.009961
+  [FT] ep=2: loss=2.480 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=1.789 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.153 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.938 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.880 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.871 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.7% (Δ=+2.2%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.618 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=2.521 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.435 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.743 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.138 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.932 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.879 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.871 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 88.5% (Δ=+3.9%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.618 acc=96.7% lr=0.009990
+  [FT] ep=1: loss=2.526 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=2.440 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.730 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.108 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.914 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.866 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.858 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.4% (Δ=+2.1%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.631 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=2.537 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.454 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=1.748 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.122 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.922 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.870 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.862 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.3%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.579 acc=98.2% lr=0.009990
+  [FT] ep=1: loss=2.491 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=2.408 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=1.704 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.111 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.920 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.870 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.863 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.5% (Δ=+0.8%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.647 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=2.548 acc=98.3% lr=0.009961
+  [FT] ep=2: loss=2.460 acc=99.8% lr=0.009912
+  [FT] ep=10: loss=1.763 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.136 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.934 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.881 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.873 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.8% (Δ=+3.2%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.674 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=2.582 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.494 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.776 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.142 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.938 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.883 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.874 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 84.9% (Δ=+2.8%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.638 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=2.541 acc=98.5% lr=0.009961
+  [FT] ep=2: loss=2.455 acc=99.1% lr=0.009912
+  [FT] ep=10: loss=1.762 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.149 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.937 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.882 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.873 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.5% (Δ=+4.0%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.632 acc=96.1% lr=0.009990
+  [FT] ep=1: loss=2.534 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.447 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.751 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.148 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.936 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.884 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.875 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.4% (Δ=+3.5%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [FT] ep=0: loss=2.607 acc=97.1% lr=0.009990
+  [FT] ep=1: loss=2.513 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.427 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.718 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.108 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=0.918 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.867 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.859 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=0.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.6%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     90.1%
+  [Weighted by Acc] 90.1%
+  [Softmax w, τ=0.01] 89.6%  (top_w=0.285)
+  [Softmax w, τ=0.05] 90.0%  (top_w=0.131)
+  [Softmax w, τ=0.1] 90.0%  (top_w=0.115)
+  [Top-2 Ensemble] 89.0%  (models: ['88.5%', '87.9%'])
+  [Top-3 Ensemble] 89.7%  (models: ['88.5%', '87.9%', '87.9%'])
+  [Top-4 Ensemble] 89.2%  (models: ['88.5%', '87.9%', '87.9%', '87.5%'])
+  [Top-5 Ensemble] 89.0%  (models: ['88.5%', '87.9%', '87.9%', '87.5%', '87.4%'])
+  [Top-6 Ensemble] 89.6%  (models: ['88.5%', '87.9%', '87.9%', '87.5%', '87.4%', '86.8%'])
+  [Top-7 Ensemble] 90.1%  (models: ['88.5%', '87.9%', '87.9%', '87.5%', '87.4%', '86.8%', '86.7%'])
+  [Top-8 Ensemble] 90.0%  (models: ['88.5%', '87.9%', '87.9%', '87.5%', '87.4%', '86.8%', '86.7%', '86.5%'])
+  [Top-9 Ensemble] 90.3%  (models: ['88.5%', '87.9%', '87.9%', '87.5%', '87.4%', '86.8%', '86.7%', '86.5%', '86.4%'])
+  [Inf Temp=0.5]    90.1%
+  [Inf Temp=0.8]    90.1%
+  [Inf Temp=1.0]    90.1%  ← baseline
+  [Inf Temp=1.5]    90.1%
+  [Inf Temp=2.0]    90.1%
+  [Inf Temp=3.0]    90.1%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 89.7%
+    NEW BEST: top7_u_t0.5 → 90.1%
+    NEW BEST: top9_u_t0.5 → 90.3%
+  ★ BEST ENSEMBLE: top9_u_t0.5 → 90.3%
+
+  ★★ FINAL BEST: top9_u_t0.5 → 90.3%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 87.0% ± 1.0%
+  Δ: +2.9%
+  Logit Ensemble (10x):   90.3%
+  Δ from avg FT: +3.2%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        79.8%      81.8%
+  grid                   58.6%        65.9%      77.6%
+  leather                89.5%        91.1%      90.9%
+  tile                   93.1%        96.9%      95.2%
+  wood                   84.9%        88.4%      94.3%
+  bottle                 80.0%        85.3%      96.9%
+  cable                  90.5%        90.9%      93.0%
+  capsule                77.2%        77.2%      81.1%
+  hazelnut               83.4%        88.6%      91.4%
+  metal_nut              87.0%        92.6%      96.0%
+  pill                   80.5%        83.7%      86.4%
+  screw                  93.5%        94.8%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        89.8%      90.2%
+
+Saved: umdc_results.json
+
+========================================
+ [10] Full (APE + DC + CCSA + Text + LS) — 확인용
+========================================
+/home/vscode/minkh/src/UMDC/run_umdc.py:919: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  tf_data = torch.load(args.text_features, map_location="cpu")
+  Loaded text features: torch.Size([68, 768]) from text_features_68.pt
+════════════════════════════════════════════════════════════
+  UMDC — Unified Multi-category Defect Classification
+  k_shot=5, num_sampling=10
+  finetune=ON
+  ★ CCSA: ON (λ=1.0)
+  ★ Text Features: ON (γ=2.0)
+  ★ Label Smoothing: 0.1
+  ★ Logit Ensemble: ON (average across samplings)
+  ★ APE Feature Selection: top-640 channels
+  ★ Distribution Calibration: 3 hallucinated/class (scale=0.5, weight=1.0)
+  ft_epochs=50, ft_lr=0.01
+  temperature=0.1
+  alpha=1.0, betas=[0.5, 1.0, 2.0, 5.5]
+  classes=68, device=cuda:0
+════════════════════════════════════════════════════════════
+
+[1/3] Loading buffers...
+  support=794, query=720
+
+[2/3] Running 10 samplings...
+
+--- Sampling 1/10 ---
+  support_k: 340 samples
+  Baseline: 84.4%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=3.033 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=2.917 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.815 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=2.010 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.302 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.055 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.986 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.974 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.1% (Δ=+2.6%)
+
+--- Sampling 2/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.985 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=2.870 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.767 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=1.960 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.271 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.036 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.974 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.964 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.9% (Δ=+3.3%)
+
+--- Sampling 3/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.975 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=2.868 acc=99.1% lr=0.009961
+  [FT] ep=2: loss=2.765 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.934 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.251 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.025 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.966 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.957 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.8% (Δ=+2.5%)
+
+--- Sampling 4/10 ---
+  support_k: 340 samples
+  Baseline: 84.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.997 acc=97.6% lr=0.009990
+  [FT] ep=1: loss=2.886 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=2.785 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=1.963 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.266 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.037 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.973 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.963 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.5% (Δ=+1.9%)
+
+--- Sampling 5/10 ---
+  support_k: 340 samples
+  Baseline: 85.7%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.943 acc=98.2% lr=0.009990
+  [FT] ep=1: loss=2.837 acc=99.3% lr=0.009961
+  [FT] ep=2: loss=2.737 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.918 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.248 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.026 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.967 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.958 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.1% (Δ=+1.4%)
+
+--- Sampling 6/10 ---
+  support_k: 340 samples
+  Baseline: 83.6%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=3.007 acc=96.5% lr=0.009990
+  [FT] ep=1: loss=2.893 acc=98.3% lr=0.009961
+  [FT] ep=2: loss=2.791 acc=100.0% lr=0.009912
+  [FT] ep=10: loss=1.976 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.279 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.042 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.980 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.970 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.2% (Δ=+3.6%)
+
+--- Sampling 7/10 ---
+  support_k: 340 samples
+  Baseline: 82.1%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=3.042 acc=97.4% lr=0.009990
+  [FT] ep=1: loss=2.932 acc=98.7% lr=0.009961
+  [FT] ep=2: loss=2.829 acc=99.4% lr=0.009912
+  [FT] ep=10: loss=1.996 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.282 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.047 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.983 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.973 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 85.3% (Δ=+3.2%)
+
+--- Sampling 8/10 ---
+  support_k: 340 samples
+  Baseline: 83.5%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.999 acc=96.0% lr=0.009990
+  [FT] ep=1: loss=2.885 acc=98.2% lr=0.009961
+  [FT] ep=2: loss=2.783 acc=99.3% lr=0.009912
+  [FT] ep=10: loss=1.970 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.286 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.051 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.987 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.977 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 86.5% (Δ=+3.1%)
+
+--- Sampling 9/10 ---
+  support_k: 340 samples
+  Baseline: 83.9%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.993 acc=96.1% lr=0.009990
+  [FT] ep=1: loss=2.879 acc=98.3% lr=0.009961
+  [FT] ep=2: loss=2.777 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.973 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.279 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.046 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.980 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.970 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.9% (Δ=+4.0%)
+
+--- Sampling 10/10 ---
+  support_k: 340 samples
+  Baseline: 84.3%
+  [APE] Projected to 640 channels
+  [DistCalib] Added 204 hallucinated (scale=0.5, weight=1.0), total: 544
+  [CCSA-Contrastive] 14 clusters, λ=1.0
+  [FT] ep=0: loss=2.969 acc=96.9% lr=0.009990
+  [FT] ep=1: loss=2.857 acc=98.9% lr=0.009961
+  [FT] ep=2: loss=2.754 acc=99.6% lr=0.009912
+  [FT] ep=10: loss=1.932 acc=100.0% lr=0.008864
+  [FT] ep=20: loss=1.246 acc=100.0% lr=0.006281
+  [FT] ep=30: loss=1.026 acc=100.0% lr=0.003228
+  [FT] ep=40: loss=0.968 acc=100.0% lr=0.000871
+  [FT] ep=49: loss=0.958 acc=100.0% lr=0.000100
+  [FT] DONE: epochs=50, betas=[0.5, 1.0, 2.0, 5.5], alpha=1.0, cat_aware=False, zifa=False, ccsa=1.0, mix=0.0, train_proto=False, ls=0.1, noise=0.0
+  Fine-tuned: 87.4% (Δ=+3.1%)
+
+[Logit Ensemble] Pre-computing logits from 10 models...
+  [Uniform Avg]     89.7%
+  [Weighted by Acc] 89.9%
+  [Softmax w, τ=0.01] 89.7%  (top_w=0.207)
+  [Softmax w, τ=0.05] 90.0%  (top_w=0.120)
+  [Softmax w, τ=0.1] 90.0%  (top_w=0.110)
+  [Top-2 Ensemble] 89.7%  (models: ['87.9%', '87.9%'])
+  [Top-3 Ensemble] 88.9%  (models: ['87.9%', '87.9%', '87.4%'])
+  [Top-4 Ensemble] 89.7%  (models: ['87.9%', '87.9%', '87.4%', '87.2%'])
+  [Top-5 Ensemble] 89.9%  (models: ['87.9%', '87.9%', '87.4%', '87.2%', '87.1%'])
+  [Top-6 Ensemble] 90.1%  (models: ['87.9%', '87.9%', '87.4%', '87.2%', '87.1%', '87.1%'])
+  [Top-7 Ensemble] 90.3%  (models: ['87.9%', '87.9%', '87.4%', '87.2%', '87.1%', '87.1%', '86.8%'])
+  [Top-8 Ensemble] 90.4%  (models: ['87.9%', '87.9%', '87.4%', '87.2%', '87.1%', '87.1%', '86.8%', '86.5%'])
+  [Top-9 Ensemble] 90.0%  (models: ['87.9%', '87.9%', '87.4%', '87.2%', '87.1%', '87.1%', '86.8%', '86.5%', '86.5%'])
+  [Inf Temp=0.5]    89.7%
+  [Inf Temp=0.8]    89.7%
+  [Inf Temp=1.0]    89.7%  ← baseline
+  [Inf Temp=1.5]    89.7%
+  [Inf Temp=2.0]    89.7%
+  [Inf Temp=3.0]    89.7%
+  --- Combo search ---
+    NEW BEST: top3_u_t0.5 → 88.9%
+    NEW BEST: top4_u_t0.5 → 89.7%
+    NEW BEST: top5_u_t0.5 → 89.9%
+    NEW BEST: top6_u_t0.5 → 90.1%
+    NEW BEST: top7_u_t0.5 → 90.3%
+    NEW BEST: top8_u_t0.5 → 90.4%
+  ★ BEST ENSEMBLE: top8_u_t0.5 → 90.4%
+
+  ★★ FINAL BEST: top8_u_t0.5 → 90.4%
+
+
+════════════════════════════════════════════════════════════
+                        UMDC RESULTS                        
+════════════════════════════════════════════════════════════
+
+  Baseline (Prototype Mean):  84.1% ± 0.9%
+  Fine-tuned (Support-only): 87.0% ± 0.7%
+  Δ: +2.9%
+  Logit Ensemble (10x):   90.4%
+  Δ from avg FT: +3.4%
+
+Category               Baseline   Unified FT   Ensemble
+─────────────────────────────────────────────────────────
+  carpet                 78.6%        80.9%      81.8%
+  grid                   58.6%        63.9%      79.6%
+  leather                89.5%        90.2%      90.9%
+  tile                   93.1%        93.6%      95.2%
+  wood                   84.9%        94.0%      97.1%
+  bottle                 80.0%        86.2%      93.8%
+  cable                  90.5%        91.9%      93.0%
+  capsule                77.2%        75.7%      79.2%
+  hazelnut               83.4%        88.0%      88.6%
+  metal_nut              87.0%        92.8%      96.0%
+  pill                   80.5%        82.8%      87.7%
+  screw                  93.5%        93.7%      96.7%
+  transistor            100.0%       100.0%     100.0%
+  zipper                 86.8%        88.9%      90.2%
+
+Saved: umdc_results.json
+
+============================================================
+ DONE — Clean Ablation Complete
+============================================================
+
+ 결과 정리 템플릿:
+ | # | Config                    | Ensemble | Δ vs Base |
+ |---|---------------------------|----------|-----------|
+ | 0 | Base (FT only)            | 89.3%    | —         |
+ | 1 | + APE-640                 |   ??     |           |
+ | 2 | + DC-3                    |   ??     |           |
+ | 3 | + CCSA                    |   ??     |           |
+ | 4 | + Text                    |   ??     |           |
+ | 5 | + LS                      |   ??     |           |
+ | 6 | + APE + DC                |   ??     | ★ 핵심   |
+ | 7 | + APE + DC + CCSA         |   ??     |           |
+ | 8 | + APE + DC + Text         |   ??     |           |
+ | 9 | + APE + DC + LS           |   ??     |           |
+ |10 | Full                      |   ??     |           |

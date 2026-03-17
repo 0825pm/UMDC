@@ -1,0 +1,5 @@
+{
+  "clip_acc": 82.3,
+  "topk_recall": 96.76,
+  "radc_acc": 60.18
+}
